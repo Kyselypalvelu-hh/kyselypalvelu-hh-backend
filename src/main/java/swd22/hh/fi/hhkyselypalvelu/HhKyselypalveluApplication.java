@@ -23,29 +23,33 @@ public class HhKyselypalveluApplication {
 	@Bean
 	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, QuestionRepository questionRepo) {
 		return (args) ->{
+			
 			Query query1 = new Query();
 			query1.setQueryTitle("Henkilötiedot");
+			queryRepo.save(query1);
 			
 			Question question1 = new Question();
 			question1.setTitle("Etunimi");
+			question1.setQuery(query1);
 			
 			Question question2 = new Question();
 			question2.setTitle("Sukunimi");
+			question2.setQuery(query1);
 			
 			Question question3 = new Question();
 			question3.setTitle("Kotipaikkakunta");
+			question3.setQuery(query1);
 			
 			List<Question> questions = new ArrayList<>();
 			questions.add(question1);
 			questions.add(question2);
 			questions.add(question3);
 			
-			query1.setQuestions(questions);
 			for (Question question: questions) {
 				questionRepo.save(question);
 			}
 			
-			queryRepo.save(query1);
+			
 			
 			
 		};
