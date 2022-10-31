@@ -7,10 +7,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-   <form th:object="${query}" th:action="@{savequery}" action="#" method="post">
-   <h3>Create new query:</h3>
-   <label>Title:</label><input th:field="*{title}" type="text" id="title"/>
-   <input type="submit" value="save">
-   </form>
+   
+   <div th:object=${question}>
+   <p th:text=${question.query}></p>
+   </div>
    
 </body>
