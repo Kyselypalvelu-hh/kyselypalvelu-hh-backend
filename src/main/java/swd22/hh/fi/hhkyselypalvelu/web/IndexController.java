@@ -68,9 +68,11 @@ public class IndexController {
 		return "redirect:/createquestions";
 	}
 	
+	//RECEIVES EMPTY QUESTION 
 	@GetMapping("/createquestions")
-	public String getQuestionCreation(Model model) {
-		return "";
+	public String getQuestionCreation(@ModelAttribute Question question, Model model) {
+		model.addAttribute("question",question);
+		return "createquestion";
 	}
 	
 	
