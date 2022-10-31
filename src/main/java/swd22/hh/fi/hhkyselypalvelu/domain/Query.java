@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Query {
@@ -19,6 +20,7 @@ public class Query {
 	private String title;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
+	@JsonIgnoreProperties("query")
 	private List<Question> questions;
 	
 	//CONSTRUCTORS
@@ -35,7 +37,7 @@ public class Query {
 	public void setQueryId(Long queryId) {
 		this.queryId = queryId;
 	}
-	public void setQueryTitle(String queryTitle) {
+	public void setTitle(String queryTitle) {
 		this.title = queryTitle;
 	}
 	
@@ -47,7 +49,7 @@ public class Query {
 	public Long getQueryId() {
 		return queryId;
 	}
-	public String getQueryTitle() {
+	public String getTitle() {
 		return title;
 	}
 	public List<Question> getQuestions() {

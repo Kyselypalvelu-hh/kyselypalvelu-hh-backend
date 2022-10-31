@@ -7,13 +7,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <form>
-    	<label>Kysymys:</label><input type="text"/>
-    	<input type="submit" value="new question"/>
-    </form>
-    <form>
-    	<input type="submit" value="create form"/>
-    </form>
+   <form th:object="${query}" th:action="@{testsave}" action="#" method="post">
+   <h3>Create new query:</h3>
+   <label>Title:</label><input th:field="*{title}" type="text" id="title"/>
+   <input type="submit" value="save">
+   </form>
    
-    
 </body>

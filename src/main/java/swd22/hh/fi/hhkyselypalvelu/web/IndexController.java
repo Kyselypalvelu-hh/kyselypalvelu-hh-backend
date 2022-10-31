@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,4 +48,31 @@ public class IndexController {
 		
 		return "redirect:/newquery"; // redirect to add new questions
 	}
+	
+	
+	
+	//CREATES NEW QUERY AND ASKS FOR THE TITLE FOR THE ENTIRE FORM(QUERY)
+	@GetMapping("/createquery")
+	public String getTest(Model model) {
+		model.addAttribute("query", new Query());
+		return "createquery";
+		
+	}
+	//SAVES QUERY AND REDIRECTS TO PAGE WHERE YOU ADD QUESTIONS
+	@PostMapping("/savequery")
+	public String postTest(@ModelAttribute Query query, Model model) {
+		queryrepo.save(query);
+		Question question = new Question();
+		question.setQuery(query);
+		model.addAttribute("question", question);
+		return "redirect:/createquestions";
+	}
+	
+	@GetMapping("/createquestions")
+	public String getQuestionCreation(Model model) {
+		return "";
+	}
+	
+	
+	
 }

@@ -25,7 +25,7 @@ public class HhKyselypalveluApplication {
 		return (args) ->{
 			
 			Query query1 = new Query();
-			query1.setQueryTitle("Henkilötiedot");
+			query1.setTitle("Henkilötiedot");
 			queryRepo.save(query1);
 			
 			Question question1 = new Question();
