@@ -19,7 +19,6 @@ public class Query {
 	private String title;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
-	@JoinColumn(name="queryId")
 	private List<Question> questions;
 	
 	//CONSTRUCTORS
