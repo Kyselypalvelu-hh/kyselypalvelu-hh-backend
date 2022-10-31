@@ -42,6 +42,11 @@ public class Question {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	
+
+	public void setQuery(Query query) {
+		this.query = query;
+	}
 
 	//GETTERS
 	public long getQuestionId() {
@@ -54,6 +59,10 @@ public class Question {
 
 	public String getAnswer() {
 		return answer;
+	}
+	
+	public Query getQuery() {
+		return query;
 	}
 
 	//TOSTRING

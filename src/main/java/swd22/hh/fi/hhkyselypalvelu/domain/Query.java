@@ -16,7 +16,7 @@ public class Query {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long queryId;
-	private String queryTitle;
+	private String title;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
 	@JoinColumn(name="queryId")
@@ -29,7 +29,7 @@ public class Query {
 	}
 	public Query(String queryTitle) {
 		super();
-		this.queryTitle = queryTitle;
+		this.title = queryTitle;
 	}
 	
 	//SETTERS
@@ -37,7 +37,11 @@ public class Query {
 		this.queryId = queryId;
 	}
 	public void setQueryTitle(String queryTitle) {
-		this.queryTitle = queryTitle;
+		this.title = queryTitle;
+	}
+	
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
 	}
 	
 	//GETTERS
@@ -45,13 +49,16 @@ public class Query {
 		return queryId;
 	}
 	public String getQueryTitle() {
-		return queryTitle;
+		return title;
+	}
+	public List<Question> getQuestions() {
+		return questions;
 	}
 	
 	//TOSTRING
 	@Override
 	public String toString() {
-		return "Query [queryId=" + queryId + ", queryTitle=" + queryTitle + "]";
+		return "Query [queryId=" + queryId + ", queryTitle=" + title + "]";
 	}
 	
 	
