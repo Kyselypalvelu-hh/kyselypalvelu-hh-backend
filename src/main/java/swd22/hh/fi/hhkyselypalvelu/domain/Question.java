@@ -1,13 +1,22 @@
 package swd22.hh.fi.hhkyselypalvelu.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Question {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long questionId;
 	private String title;
 	private String answer;
+	
+	@ManyToOne()
+	private Query query;
 	
 	//Constructors
 	public Question() {
