@@ -24,9 +24,8 @@ public class Question {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Question(long questionId, String title, String answer) {
+	public Question(String title, String answer) {
 		super();
-		this.questionId = questionId;
 		this.title = title;
 		this.answer = answer;
 	}
