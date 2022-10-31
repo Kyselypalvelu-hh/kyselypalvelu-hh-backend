@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Question {
 
@@ -18,6 +21,7 @@ public class Question {
 	
 	@ManyToOne
 	@JoinColumn(name="queryId")
+	@JsonIgnoreProperties("questions")
 	private Query query;
 	
 	//Constructors
