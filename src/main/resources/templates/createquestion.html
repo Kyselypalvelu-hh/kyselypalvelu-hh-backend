@@ -7,9 +7,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-   
-   <div th:object=${question}>
-   <p th:text=${question.query}></p>
-   </div>
+
+   <form th:object="${question}">
+   	<p>Create question for: <label th:text=*{query.title}></label></p>
+   	<label></label><input />
+   	<input />
+   </form>
    
 </body>
