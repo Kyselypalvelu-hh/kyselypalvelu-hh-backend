@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Add Question</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Add Questions</h1>
+	<form th:object="${question}" th:action="savequestion" action="#"
+		method="post">
+
+		<label for="question">Question</label>
+				<input type="text" id="question" th:field="*{question}"/><br/>
+				<input type="submit" value="Save"></input>
+			</form>
+	<h3>Questions:</h3>
+
+	<a href="" class="btn btn-primary">Create query</a>
+	<script>
+		let questions = []
+	</script>
+</body>
