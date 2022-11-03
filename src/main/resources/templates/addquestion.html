@@ -17,7 +17,11 @@
 				<input type="submit" value="Save"></input>
 			</form>
 	<h3>Questions:</h3>
-
+	<table>
+	<tr th:each = "question : ${questions}">
+		<td th:text="${question.title}"> 
+	</tr>
+	</table>
 	<a href="" class="btn btn-primary">Create query</a>
 
 </body>

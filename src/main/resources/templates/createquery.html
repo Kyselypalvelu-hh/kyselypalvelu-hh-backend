@@ -10,7 +10,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
    <form th:object="${query}" th:action="@{savequery}" action="#" method="post">
    <h3>Create new query:</h3>
    <label>Title:</label><input th:field="*{title}" type="text" id="title"/>
-   <input type="submit" value="save">
+   <input class="btn btn-primary" type="submit" value="save">
    </form>
    
 </body>

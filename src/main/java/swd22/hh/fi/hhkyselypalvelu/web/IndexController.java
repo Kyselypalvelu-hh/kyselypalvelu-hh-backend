@@ -67,6 +67,7 @@ public class IndexController {
 		Query query = queryrepo.findById(id).get();
 		question1.setQuery(query);
 		model.addAttribute("question", question1);
+		model.addAttribute("questions", query.getQuestions());
 		return "createquestion";
 	}
 	
