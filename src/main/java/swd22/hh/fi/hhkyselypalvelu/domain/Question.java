@@ -71,10 +71,13 @@ public class Question {
 		return query;
 	}
 
+	
+
 	//TOSTRING
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", title=" + title + ", answer=" + answer + "]";
+		return "Question [questionId=" + questionId + ", title=" + title + ", answer=" + answer + ", query=" + query
+				+ "]";
 	}
 	
 	

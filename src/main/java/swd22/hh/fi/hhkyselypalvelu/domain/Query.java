@@ -3,6 +3,7 @@ package swd22.hh.fi.hhkyselypalvelu.domain;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,8 @@ public class Query {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long queryId;
+	@Column(name= "queryId")
+	private Long id;
 	private String title;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
@@ -35,7 +37,7 @@ public class Query {
 	
 	//SETTERS
 	public void setQueryId(Long queryId) {
-		this.queryId = queryId;
+		this.id = queryId;
 	}
 	public void setTitle(String queryTitle) {
 		this.title = queryTitle;
@@ -47,7 +49,7 @@ public class Query {
 	
 	//GETTERS
 	public Long getQueryId() {
-		return queryId;
+		return id;
 	}
 	public String getTitle() {
 		return title;
@@ -59,7 +61,7 @@ public class Query {
 	//TOSTRING
 	@Override
 	public String toString() {
-		return "Query [queryId=" + queryId + ", queryTitle=" + title + "]";
+		return "Query [queryId=" + id + ", queryTitle=" + title + "]";
 	}
 	
 	

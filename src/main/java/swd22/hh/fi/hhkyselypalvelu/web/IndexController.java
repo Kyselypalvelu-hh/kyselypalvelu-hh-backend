@@ -64,7 +64,9 @@ public class IndexController {
 	@GetMapping("/createquestions/{id}")
 	public String getQuestionCreation(@PathVariable("id") Long id,Model model) {
 		Question question1 = new Question();
-		question1.setQuery(queryrepo.findById(id).get());
+		Query query = queryrepo.findById(id).get();
+		question1.setQuery(query);
+		System.out.println(question1);
 		model.addAttribute("question", question1);
 		return "createquestion";
 	}
@@ -74,11 +76,12 @@ public class IndexController {
 	public String saveQuestion(@ModelAttribute Question question, Model model) {
 		
 		questionrepo.save(question);
-		//Question question1 = new Question();
-		//question1.setQuery(question.getQuery());
-		//model.addAttribute("question",question1);
+		Question question1 = question;
+		Query query = question1.getQuery();
 		
-		return "redirect:/createquestions/"+question.getQuery().getQueryId(); // redirect to add new questions
+		System.out.println(query);
+		
+		return "redirect:/createquestions/1"; // redirect to add new questions
 	}
 	
 	
