@@ -8,10 +8,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 </head>
 <body>
 
-   <form th:object="${question}">
-   	<p>Create question for: <label th:text=*{query.title}></label></p>
-   	<label></label><input />
-   	<input />
-   </form>
+   <form th:object="${question}" th:action="@{savequestion}" action="#"
+		method="post">
+		<h3>Create a new question</h3>
+		<label for="question">Question</label>
+				<input type="text" id="question" th:field="*{title}"/><br/>
+				<input type="submit" value="Save"></input>
+			</form>
    
 </body>
