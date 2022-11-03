@@ -74,11 +74,11 @@ public class IndexController {
 	public String saveQuestion(@ModelAttribute Question question, Model model) {
 		
 		questionrepo.save(question);
-		Question question1 = new Question();
-		question1.setQuery(question.getQuery());
-		model.addAttribute("question",question1);
+		//Question question1 = new Question();
+		//question1.setQuery(question.getQuery());
+		//model.addAttribute("question",question1);
 		
-		return "createquestion"; // redirect to add new questions
+		return "redirect:/createquestions/"+question.getQuery().getQueryId(); // redirect to add new questions
 	}
 	
 	
