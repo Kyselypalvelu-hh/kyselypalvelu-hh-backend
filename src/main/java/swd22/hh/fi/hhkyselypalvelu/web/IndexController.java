@@ -41,15 +41,6 @@ public class IndexController {
 		model.addAttribute("queries", queryrepo.findAll());
 		return "newquery";
 	}
-
-	// save question
-	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)
-	public String saveQuestion(Question question) {
-
-		
-		return "redirect:/newquery"; // redirect to add new questions
-	}
-	
 	
 	
 	//CREATES NEW QUERY AND ASKS FOR THE TITLE FOR THE ENTIRE FORM(QUERY)
@@ -78,6 +69,17 @@ public class IndexController {
 		return "createquestion";
 	}
 	
+	// save question
+	@PostMapping("/savequestion")
+	public String saveQuestion(@ModelAttribute Question question, Model model) {
+		
+		questionrepo.save(question);
+		Question question1 = new Question();
+		question1.setQuery(question.getQuery());
+		model.addAttribute("question",question1);
+		
+		return "createquestion"; // redirect to add new questions
+	}
 	
 	
 }
