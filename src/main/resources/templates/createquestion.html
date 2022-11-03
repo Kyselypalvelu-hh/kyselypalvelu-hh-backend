@@ -14,6 +14,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<label for="question">Question</label>
 				<input type="text" id="question" th:field="*{title}"/><br/>
 				<input type="submit" value="Save"></input>
+				<input type="hidden" th:field="${query}">
 			</form>
    
 </body>
