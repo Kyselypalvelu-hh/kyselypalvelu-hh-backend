@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,16 +63,18 @@ public class IndexController {
 	@PostMapping("/savequery")
 	public String postTest(@ModelAttribute Query query, Model model) {
 		queryrepo.save(query);
-		Question question = new Question();
-		question.setQuery(query);
-		model.addAttribute("question", question);
-		return "redirect:/createquestions";
+		
+		//sends forward id of the query so questions can be connected to query
+		String create = "createquestions/"+query.getQueryId();
+		return "redirect:/"+create;
 	}
 	
 	//RECEIVES EMPTY QUESTION 
-	@GetMapping("/createquestions")
-	public String getQuestionCreation(@ModelAttribute Question question, Model model) {
-		model.addAttribute("question",question);
+	@GetMapping("/createquestions/{id}")
+	public String getQuestionCreation(@PathVariable("id") Long id,Model model) {
+		Question question1 = new Question();
+		question1.setQuery(queryrepo.findById(id).get());
+		model.addAttribute("question", question1);
 		return "createquestion";
 	}
 	
