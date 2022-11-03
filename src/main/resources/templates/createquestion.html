@@ -13,8 +13,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<h3>Create a new question</h3>
 		<label for="question">Question</label>
 				<input type="text" id="question" th:field="*{title}"/><br/>
+				<input type="hidden" th:field="*{query.queryId}">
 				<input type="submit" value="Save"></input>
-				<input type="hidden" th:field="${query}">
+				
 			</form>
    
 </body>

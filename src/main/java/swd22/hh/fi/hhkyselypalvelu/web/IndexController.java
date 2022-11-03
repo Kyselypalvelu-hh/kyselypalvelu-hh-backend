@@ -66,7 +66,6 @@ public class IndexController {
 		Question question1 = new Question();
 		Query query = queryrepo.findById(id).get();
 		question1.setQuery(query);
-		System.out.println(question1);
 		model.addAttribute("question", question1);
 		return "createquestion";
 	}
@@ -75,13 +74,8 @@ public class IndexController {
 	@PostMapping("/savequestion")
 	public String saveQuestion(@ModelAttribute Question question, Model model) {
 		
-		questionrepo.save(question);
-		Question question1 = question;
-		Query query = question1.getQuery();
-		
-		System.out.println(query);
-		
-		return "redirect:/createquestions/1"; // redirect to add new questions
+		questionrepo.save(question);		
+		return "redirect:/createquestions/"+question.getQuery().getQueryId(); // redirect to add new questions
 	}
 	
 	
