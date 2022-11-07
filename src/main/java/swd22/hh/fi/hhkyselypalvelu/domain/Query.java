@@ -24,7 +24,12 @@ public class Query {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
 	@JsonIgnoreProperties("query")
-	private List<Question> questions;
+	private List<OpenTextQuestion> textQuestions;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
+	@JsonIgnoreProperties("query")
+	private List<MultipleChoiceQuestion> choiceQuestions;
+	
 	
 	//CONSTRUCTORS
 	public Query() {
@@ -34,25 +39,32 @@ public class Query {
 	public Query(String queryTitle, String description) {
 		super();
 		this.title = queryTitle;
-		this.setDescription(description);
+		this.description = description;
 	}
 	
 	//SETTERS
-	public void setQueryId(Long queryId) {
-		this.id = queryId;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setTitle(String queryTitle) {
-		this.title = queryTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
+	public void setTextQuestions(List<OpenTextQuestion> textQuestions) {
+		this.textQuestions = textQuestions;
 	}
+	public void setChoiceQuestions(List<MultipleChoiceQuestion> choiceQuestions) {
+		this.choiceQuestions = choiceQuestions;
+	}
+
 	
+	
+	
+
 	//GETTERS
-	public Long getQueryId() {
+	public Long getId() {
 		return id;
 	}
 	public String getTitle() {
@@ -61,9 +73,14 @@ public class Query {
 	public String getDescription() {
 		return description;
 	}
-	public List<Question> getQuestions() {
-		return questions;
+	public List<OpenTextQuestion> getTextQuestions() {
+		return textQuestions;
 	}
+	public List<MultipleChoiceQuestion> getChoiceQuestions() {
+		return choiceQuestions;
+	}
+
+	
 	
 	//TOSTRING
 	@Override
