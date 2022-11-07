@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface OpenTextQuestionRepository extends CrudRepository<OpenTextQuestion, Long>{
 	
-	List<OpenTextQuestion> findByTitle(String title);
+	List<OpenTextQuestion> findByQuestion(String question);
 }

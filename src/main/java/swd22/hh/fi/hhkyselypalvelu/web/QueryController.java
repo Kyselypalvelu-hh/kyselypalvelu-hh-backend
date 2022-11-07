@@ -29,7 +29,7 @@ public class QueryController {
 		queryrepo.save(query);
 		
 		//sends forward id of the query so questions can be connected to query
-		String create = "createquestions/"+query.getQueryId();
+		String create = "createquestions/"+query.getId();
 		return "redirect:/"+create;
 	}
 	

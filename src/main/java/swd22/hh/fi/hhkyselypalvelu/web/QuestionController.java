@@ -25,11 +25,11 @@ public class QuestionController {
 	//RECEIVES EMPTY QUESTION 
 	@GetMapping("/createquestions/{id}")
 	public String getQuestionCreation(@PathVariable("id") Long id,Model model) {
-		OpenTextQuestion question1 = new OpenTextQuestion();
+		OpenTextQuestion textquestion = new OpenTextQuestion();
 		Query query = queryrepo.findById(id).get();
-		question1.setQuery(query);
-		model.addAttribute("question", question1);
-		model.addAttribute("questions", query.getQuestions());
+		textquestion.setQuery(query);
+		model.addAttribute("question", textquestion);
+		model.addAttribute("questions", query.getTextQuestions());
 		return "createquestion";
 	}
 	
@@ -38,7 +38,7 @@ public class QuestionController {
 	public String saveQuestion(@ModelAttribute OpenTextQuestion question, Model model) {
 		
 		questionrepo.save(question);		
-		return "redirect:/createquestions/"+question.getQuery().getQueryId(); // redirect to add new questions
+		return "redirect:/createquestions/"+question.getQuery().getId(); // redirect to add new questions
 	}
 
 }

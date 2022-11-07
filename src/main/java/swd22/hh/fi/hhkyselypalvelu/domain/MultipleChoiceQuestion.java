@@ -7,32 +7,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class OpenTextQuestion {
-
+public class MultipleChoiceQuestion {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long questionId;
-	private String question;
+	private String title;
 
 	
 	@ManyToOne
 	@JoinColumn(name="queryId")
-	@JsonIgnoreProperties("textQuestions")
+	@JsonIgnoreProperties("choiceQuestions")
 	private Query query;
 	
 	//Constructors
-	public OpenTextQuestion() {
+	public MultipleChoiceQuestion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public OpenTextQuestion(String title) {
+	public MultipleChoiceQuestion(String title) {
 		super();
-		this.question = title;
+		this.title = title;
 
 	}
 
@@ -42,7 +41,7 @@ public class OpenTextQuestion {
 	}
 
 	public void setTitle(String title) {
-		this.question = title;
+		this.title = title;
 	}
 
 
@@ -56,7 +55,7 @@ public class OpenTextQuestion {
 	}
 
 	public String getTitle() {
-		return question;
+		return title;
 	}
 
 	
@@ -69,9 +68,8 @@ public class OpenTextQuestion {
 	//TOSTRING
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", title=" + question + ", query=" + query
+		return "Question [questionId=" + questionId + ", title=" + title + ", query=" + query
 				+ "]";
 	}
-	
-	
+
 }
