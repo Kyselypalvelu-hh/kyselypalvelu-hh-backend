@@ -13,12 +13,12 @@
 		<div class="col-md-8 offset-md-3">
 			<form th:object="${question}" th:action="@{/savequestion}" action="#"
 				method="post">
-
-				<h3>Add questions for query for your query </h3>
 				
+				<h3>Add questions for query for your query</h3>
+				<h3 th:text="*{query.title}"></h3>
 				<h4> Description:</h4>
 				<p th:text="*{query.description}"></p>
-
+	
 				<label for="question"></label> <input type="text" id="question"
 					th:field="*{title}" size="60" autofocus
 					placeholder="Add a question" /> <input type="hidden"
