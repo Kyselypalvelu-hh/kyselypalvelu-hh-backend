@@ -12,6 +12,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<div class="col-md-8 offset-md-3">
    <form th:object="${query}" th:action="@{savequery}" action="#" method="post">
    <h3>Create new query:</h3>
+   <br/>
    <label>
    <input th:field="*{title}" type="text" id="title" size="60" autofocus placeholder="Title for your query"/><br/>
    <br/>
