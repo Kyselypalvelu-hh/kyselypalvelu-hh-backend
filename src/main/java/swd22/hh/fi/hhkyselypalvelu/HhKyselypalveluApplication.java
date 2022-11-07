@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
-import swd22.hh.fi.hhkyselypalvelu.domain.Question;
-import swd22.hh.fi.hhkyselypalvelu.domain.QuestionRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestionRepository;
 
 @SpringBootApplication
 public class HhKyselypalveluApplication {
@@ -21,31 +21,31 @@ public class HhKyselypalveluApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, QuestionRepository questionRepo) {
+	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, OpenTextQuestionRepository questionRepo) {
 		return (args) ->{
 			
 			Query query1 = new Query();
 			query1.setTitle("Henkilötiedot");
 			queryRepo.save(query1);
 			
-			Question question1 = new Question();
+			OpenTextQuestion question1 = new OpenTextQuestion();
 			question1.setTitle("Etunimi");
 			question1.setQuery(query1);
 			
-			Question question2 = new Question();
+			OpenTextQuestion question2 = new OpenTextQuestion();
 			question2.setTitle("Sukunimi");
 			question2.setQuery(query1);
 			
-			Question question3 = new Question();
+			OpenTextQuestion question3 = new OpenTextQuestion();
 			question3.setTitle("Kotipaikkakunta");
 			question3.setQuery(query1);
 			
-			List<Question> questions = new ArrayList<>();
+			List<OpenTextQuestion> questions = new ArrayList<>();
 			questions.add(question1);
 			questions.add(question2);
 			questions.add(question3);
 			
-			for (Question question: questions) {
+			for (OpenTextQuestion question: questions) {
 				questionRepo.save(question);
 			}
 			

@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Question {
+public class OpenTextQuestion {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long questionId;
 	private String title;
-	private String answer;
+
 	
 	@ManyToOne
 	@JoinColumn(name="queryId")
@@ -25,15 +25,15 @@ public class Question {
 	private Query query;
 	
 	//Constructors
-	public Question() {
+	public OpenTextQuestion() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Question(String title, String answer) {
+	public OpenTextQuestion(String title) {
 		super();
 		this.title = title;
-		this.answer = answer;
+
 	}
 
 	//SETTERS
@@ -45,10 +45,6 @@ public class Question {
 		this.title = title;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
-	}
-	
 
 	public void setQuery(Query query) {
 		this.query = query;
@@ -63,9 +59,6 @@ public class Question {
 		return title;
 	}
 
-	public String getAnswer() {
-		return answer;
-	}
 	
 	public Query getQuery() {
 		return query;
@@ -76,7 +69,7 @@ public class Question {
 	//TOSTRING
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", title=" + title + ", answer=" + answer + ", query=" + query
+		return "Question [questionId=" + questionId + ", title=" + title + ", query=" + query
 				+ "]";
 	}
 	

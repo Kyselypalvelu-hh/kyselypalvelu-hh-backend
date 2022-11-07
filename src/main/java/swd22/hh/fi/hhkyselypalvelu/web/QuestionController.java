@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
-import swd22.hh.fi.hhkyselypalvelu.domain.Question;
-import swd22.hh.fi.hhkyselypalvelu.domain.QuestionRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestionRepository;
 
 @Controller // Controller for questions made with thymeleaf
 public class QuestionController {
 	
 	@Autowired
-	private QuestionRepository questionrepo;
+	private OpenTextQuestionRepository questionrepo;
 	@Autowired
 	private QueryRepository queryrepo;
 	
@@ -25,7 +25,7 @@ public class QuestionController {
 	//RECEIVES EMPTY QUESTION 
 	@GetMapping("/createquestions/{id}")
 	public String getQuestionCreation(@PathVariable("id") Long id,Model model) {
-		Question question1 = new Question();
+		OpenTextQuestion question1 = new OpenTextQuestion();
 		Query query = queryrepo.findById(id).get();
 		question1.setQuery(query);
 		model.addAttribute("question", question1);
@@ -35,7 +35,7 @@ public class QuestionController {
 	
 	// save question
 	@PostMapping("/savequestion")
-	public String saveQuestion(@ModelAttribute Question question, Model model) {
+	public String saveQuestion(@ModelAttribute OpenTextQuestion question, Model model) {
 		
 		questionrepo.save(question);		
 		return "redirect:/createquestions/"+question.getQuery().getQueryId(); // redirect to add new questions

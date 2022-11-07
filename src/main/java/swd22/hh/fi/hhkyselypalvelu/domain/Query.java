@@ -24,7 +24,7 @@ public class Query {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
 	@JsonIgnoreProperties("query")
-	private List<Question> questions;
+	private List<OpenTextQuestion> questions;
 	
 	//CONSTRUCTORS
 	public Query() {
@@ -47,7 +47,7 @@ public class Query {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void setQuestions(List<Question> questions) {
+	public void setQuestions(List<OpenTextQuestion> questions) {
 		this.questions = questions;
 	}
 	
@@ -61,7 +61,7 @@ public class Query {
 	public String getDescription() {
 		return description;
 	}
-	public List<Question> getQuestions() {
+	public List<OpenTextQuestion> getQuestions() {
 		return questions;
 	}
 	
