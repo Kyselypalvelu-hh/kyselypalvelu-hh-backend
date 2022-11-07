@@ -19,7 +19,7 @@ public class MultipleChoiceOption {
 	
 	@ManyToOne
 	@JoinColumn(name="questionId")
-	@JsonIgnoreProperties("textQuestions")
+	@JsonIgnoreProperties("choiceOptions")
 	private	MultipleChoiceQuestion question;
 	
 	

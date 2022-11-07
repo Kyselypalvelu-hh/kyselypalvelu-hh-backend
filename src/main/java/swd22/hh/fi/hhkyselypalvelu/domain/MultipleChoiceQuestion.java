@@ -3,6 +3,7 @@ package swd22.hh.fi.hhkyselypalvelu.domain;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class MultipleChoiceQuestion {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="questionId")
 	private long questionId;
 	private String question;
 	private boolean isCheckbox;
@@ -33,6 +35,14 @@ public class MultipleChoiceQuestion {
 	private List<MultipleChoiceOption> choiceOptions;
 	
 	
+	public List<MultipleChoiceOption> getChoiceOptions() {
+		return choiceOptions;
+	}
+
+	public void setChoiceOptions(List<MultipleChoiceOption> choiceOptions) {
+		this.choiceOptions = choiceOptions;
+	}
+
 	//Constructors
 	public MultipleChoiceQuestion() {
 		super();
@@ -50,7 +60,7 @@ public class MultipleChoiceQuestion {
 		this.questionId = questionId;
 	}
 
-	public void setTitle(String title) {
+	public void setQuestion(String title) {
 		this.question = title;
 	}
 
@@ -68,7 +78,7 @@ public class MultipleChoiceQuestion {
 		return questionId;
 	}
 
-	public String getTitle() {
+	public String getQuestion() {
 		return question;
 	}
 

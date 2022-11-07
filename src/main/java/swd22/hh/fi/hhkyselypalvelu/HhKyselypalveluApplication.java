@@ -8,10 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import swd22.hh.fi.hhkyselypalvelu.domain.Query;
-import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestionRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.Query;
+import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
 
 @SpringBootApplication
 public class HhKyselypalveluApplication {
@@ -21,7 +25,8 @@ public class HhKyselypalveluApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, OpenTextQuestionRepository questionRepo) {
+	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, OpenTextQuestionRepository textRepo,
+			MultipleChoiceQuestionRepository choiceRepo, MultipleChoiceOptionRepository optionRepo) {
 		return (args) ->{
 			
 			Query query1 = new Query();
@@ -40,14 +45,50 @@ public class HhKyselypalveluApplication {
 			question3.setTitle("Kotipaikkakunta");
 			question3.setQuery(query1);
 			
+			
+			
 			List<OpenTextQuestion> questions = new ArrayList<>();
 			questions.add(question1);
 			questions.add(question2);
 			questions.add(question3);
 			
+			
+			
 			for (OpenTextQuestion question: questions) {
-				questionRepo.save(question);
+				textRepo.save(question);
 			}
+			
+
+			//-----MULTIPLE CHOICE TEST DATA------
+			
+			//QUESTION: LEMPIVÄRI
+			MultipleChoiceQuestion choiceQuestion = new MultipleChoiceQuestion();
+			choiceQuestion.setQuestion("Lempiväri");
+			choiceQuestion.setCheckbox(false);
+			choiceQuestion.setQuery(query1);
+			
+			
+			//OPTIONS FOR QUESTION
+			//CREATE LIST OF OPTIONS
+			List<MultipleChoiceOption> options = new ArrayList<>();
+			
+			//OPTION 1
+			MultipleChoiceOption option1 = new MultipleChoiceOption();
+			option1.setOption("Sininen");
+			option1.setQuestion(choiceQuestion);
+			
+			//OPTION "
+			MultipleChoiceOption option2 = new MultipleChoiceOption();
+			option2.setOption("Vihreä");
+			option2.setQuestion(choiceQuestion);
+			
+			//ADD OPTIONS TO LIST
+			options.add(option1);
+			options.add(option2);
+			
+			//SAVE TO DB
+			choiceQuestion.setChoiceOptions(options);
+			choiceRepo.save(choiceQuestion);
 			
 			
 			
