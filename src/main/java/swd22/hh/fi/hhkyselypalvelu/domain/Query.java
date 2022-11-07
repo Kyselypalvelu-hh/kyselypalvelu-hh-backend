@@ -20,6 +20,7 @@ public class Query {
 	@Column(name= "queryId")
 	private Long id;
 	private String title;
+	private String description;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "query")
 	@JsonIgnoreProperties("query")
@@ -30,9 +31,10 @@ public class Query {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Query(String queryTitle) {
+	public Query(String queryTitle, String description) {
 		super();
 		this.title = queryTitle;
+		this.setDescription(description);
 	}
 	
 	//SETTERS
@@ -42,7 +44,9 @@ public class Query {
 	public void setTitle(String queryTitle) {
 		this.title = queryTitle;
 	}
-	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
@@ -54,6 +58,9 @@ public class Query {
 	public String getTitle() {
 		return title;
 	}
+	public String getDescription() {
+		return description;
+	}
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -61,8 +68,10 @@ public class Query {
 	//TOSTRING
 	@Override
 	public String toString() {
-		return "Query [queryId=" + id + ", queryTitle=" + title + "]";
+		return "Query [queryId=" + id + ", queryTitle=" + title + ", description=" + description +"]";
 	}
+
+	
 	
 	
 }
