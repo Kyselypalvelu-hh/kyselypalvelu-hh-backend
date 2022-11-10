@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
@@ -28,7 +30,7 @@ public class HhKyselypalveluApplication {
 	
 	@Bean
 	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, OpenTextQuestionRepository textRepo,
-			MultipleChoiceQuestionRepository choiceRepo, MultipleChoiceOptionRepository optionRepo,OpenTextAnswerRepository textAnswerRepo) {
+			MultipleChoiceQuestionRepository choiceRepo, MultipleChoiceOptionRepository optionRepo,OpenTextAnswerRepository textAnswerRepo,MultipleChoiceAnswerRepository choiceAnswerRepo) {
 		return (args) ->{
 			
 			Query query1 = new Query();
@@ -66,7 +68,7 @@ public class HhKyselypalveluApplication {
 			//QUESTION: LEMPIVÄRI
 			MultipleChoiceQuestion choiceQuestion = new MultipleChoiceQuestion();
 			choiceQuestion.setQuestion("Lempiväri");
-			choiceQuestion.setCheckbox(false);
+			choiceQuestion.setCheckbox(true);
 			choiceQuestion.setQuery(query1);
 			
 			
@@ -79,7 +81,7 @@ public class HhKyselypalveluApplication {
 			option1.setOption("Sininen");
 			option1.setQuestion(choiceQuestion);
 			
-			//OPTION "
+			//OPTION 2
 			MultipleChoiceOption option2 = new MultipleChoiceOption();
 			option2.setOption("Vihreä");
 			option2.setQuestion(choiceQuestion);
@@ -104,6 +106,16 @@ public class HhKyselypalveluApplication {
 			textAnswerRepo.save(answer2);
 			textAnswerRepo.save(answer3);
 			
+			
+			//multiple choice answer
+			MultipleChoiceAnswer cAnswer1 = new MultipleChoiceAnswer();
+			List<MultipleChoiceOption> answerOptions = new ArrayList<>();
+			answerOptions.add(option1);
+			answerOptions.add(option2);
+			cAnswer1.setOptions(answerOptions);
+			cAnswer1.setQuestion(choiceQuestion);
+			
+			choiceAnswerRepo.save(cAnswer1);
 			
 		};
 	}

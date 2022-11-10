@@ -36,6 +36,25 @@ public class MultipleChoiceQuestion {
 	private List<MultipleChoiceOption> choiceOptions;
 	
 	
+	//ANSWERS
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties("question")
+	private List<MultipleChoiceAnswer> answers;
+	
+	public List<MultipleChoiceAnswer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<MultipleChoiceAnswer> answers) {
+		this.answers = answers;
+	}
+
+	
+	//-----
+	
+	
+
 	public List<MultipleChoiceOption> getChoiceOptions() {
 		return choiceOptions;
 	}
