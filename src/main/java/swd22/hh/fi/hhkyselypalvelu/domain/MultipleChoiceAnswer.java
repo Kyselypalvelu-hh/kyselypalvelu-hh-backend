@@ -2,6 +2,7 @@ package swd22.hh.fi.hhkyselypalvelu.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class MultipleChoiceAnswer {
@@ -21,7 +24,8 @@ public class MultipleChoiceAnswer {
 	@JoinColumn(name="questionId")
 	private MultipleChoiceQuestion question;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "multiplechoiseoption")
+	@JsonIgnoreProperties("multiplechoiseoption")
 	private List<MultipleChoiceOption> options;
 
 	
