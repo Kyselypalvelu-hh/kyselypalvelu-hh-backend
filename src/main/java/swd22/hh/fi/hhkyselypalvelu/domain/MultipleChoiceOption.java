@@ -27,9 +27,12 @@ public class MultipleChoiceOption {
 	@JsonIgnoreProperties("choiceOptions")
 	private	MultipleChoiceQuestion question;
 	
+	/*
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
 	@JsonIgnoreProperties("option")
 	private List<MultipleChoiceAnswer> answers;
+	
+	*/
 	
 	
 	//CONSTRUCTORS
