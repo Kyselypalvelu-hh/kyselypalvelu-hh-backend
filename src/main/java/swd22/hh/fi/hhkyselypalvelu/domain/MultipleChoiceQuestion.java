@@ -28,7 +28,7 @@ public class MultipleChoiceQuestion {
 	
 	@ManyToOne
 	@JoinColumn(name="queryId")
-	@JsonIgnoreProperties("multipleChoiceQuestions")
+	@JsonIgnoreProperties("choiceQuestions")
 	private Query query;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")

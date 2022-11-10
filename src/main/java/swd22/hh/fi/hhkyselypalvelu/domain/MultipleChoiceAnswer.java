@@ -22,9 +22,10 @@ public class MultipleChoiceAnswer {
 	
 	@ManyToOne
 	@JoinColumn(name="questionId")
+	@JsonIgnoreProperties("answers")
 	private MultipleChoiceQuestion question;
 	
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "multiplechoiseoption")
+	@ManyToMany
 	@JsonIgnoreProperties("multiplechoiseoption")
 	private List<MultipleChoiceOption> options;
 
