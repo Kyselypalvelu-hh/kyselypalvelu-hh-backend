@@ -14,10 +14,8 @@
 			<form th:object="${question}" th:action="@{/savequestion}" action="#"
 				method="post">
 				
-				<h3>Add questions for your query: </h3>
+				<h3>Add answer options for your question: </h3>
 				<strong th:text="*{query.title}"></strong>
-				<h6> Description: </h6>
-				<strong th:text="*{query.description}"></strong>
 				<br/>
 				<br/>
 				<label for="question"></label> 
@@ -25,17 +23,6 @@
 					placeholder="Add single answer question" /> 
 				<input type="hidden" th:field="*{query.id}"> 
 				<input class="btn btn-primary" type="submit" value="Add"></input>
-			</form>
-			<div style="clear: both; display: block; height: 20px;"></div>
-			
-			<form th:object="${multichoisequestion}" th:action="@{/savemultichoicequestion}" action="#"
-				method="post">
-			<label for="multichoicequestion"></label> 
-				<input type="text" id="multichoicequestion" th:field="*{question}" size="60"
-					placeholder="Add multiple answer question"/> 
-				<input type="hidden" th:field="*{query.id}"> 
-				<input class="btn btn-primary" type="submit" value="Add"/>
-			
 			</form>
 			
 			<div style="clear: both; display: block; height: 20px;"></div>
