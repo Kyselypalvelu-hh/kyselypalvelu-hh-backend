@@ -1,11 +1,13 @@
 package swd22.hh.fi.hhkyselypalvelu.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class OpenTextAnswer {
 
 	@Id
@@ -19,9 +21,8 @@ public class OpenTextAnswer {
 	
 	
 	//Constructors
-	public OpenTextAnswer(Long answerId, String answer, OpenTextQuestion question) {
+	public OpenTextAnswer(String answer, OpenTextQuestion question) {
 		super();
-		this.answerId = answerId;
 		this.answer = answer;
 		this.question = question;
 	}

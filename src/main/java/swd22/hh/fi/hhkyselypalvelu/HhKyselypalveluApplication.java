@@ -12,6 +12,8 @@ import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestionRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswer;
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswerRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
@@ -26,7 +28,7 @@ public class HhKyselypalveluApplication {
 	
 	@Bean
 	public CommandLineRunner launchTestQuery (QueryRepository queryRepo, OpenTextQuestionRepository textRepo,
-			MultipleChoiceQuestionRepository choiceRepo, MultipleChoiceOptionRepository optionRepo) {
+			MultipleChoiceQuestionRepository choiceRepo, MultipleChoiceOptionRepository optionRepo,OpenTextAnswerRepository textAnswerRepo) {
 		return (args) ->{
 			
 			Query query1 = new Query();
@@ -91,6 +93,16 @@ public class HhKyselypalveluApplication {
 			choiceRepo.save(choiceQuestion);
 			
 			
+			
+			//----ANSWERS-----
+			
+			OpenTextAnswer answer1 = new OpenTextAnswer("helsinki",question1);
+			OpenTextAnswer answer2 = new OpenTextAnswer("Vantaa",question1);
+			OpenTextAnswer answer3 = new OpenTextAnswer("Testitaavi",question2);
+			
+			textAnswerRepo.save(answer1);
+			textAnswerRepo.save(answer2);
+			textAnswerRepo.save(answer3);
 			
 			
 		};
