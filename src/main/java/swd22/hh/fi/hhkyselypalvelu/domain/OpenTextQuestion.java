@@ -25,10 +25,11 @@ public class OpenTextQuestion {
 	
 	@ManyToOne
 	@JoinColumn(name="queryId")
-	@JsonIgnoreProperties("textQuestions")
+	@JsonIgnoreProperties("openTextQuestion")
 	private Query query;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties("question")
 	private List<OpenTextAnswer> answers;
 	
 	
