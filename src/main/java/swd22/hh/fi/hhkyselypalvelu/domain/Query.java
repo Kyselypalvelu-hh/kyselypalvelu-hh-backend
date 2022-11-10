@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
+//query which contains multiple questions, users can create queries and answer them
 @Entity
 public class Query {
 

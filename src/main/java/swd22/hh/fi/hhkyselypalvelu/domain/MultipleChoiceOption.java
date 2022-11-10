@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+//handles all different options for a multiple choice question
 @Entity
 public class MultipleChoiceOption {
 	

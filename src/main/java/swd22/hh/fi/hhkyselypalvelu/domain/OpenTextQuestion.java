@@ -1,15 +1,19 @@
 package swd22.hh.fi.hhkyselypalvelu.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+//Question which receives open text answer
 @Entity
 public class OpenTextQuestion {
 
@@ -24,6 +28,15 @@ public class OpenTextQuestion {
 	@JsonIgnoreProperties("textQuestions")
 	private Query query;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	private List<OpenTextAnswer> answers;
+	
+	
+	
+	
+
+
+
 	//Constructors
 	public OpenTextQuestion() {
 		super();
@@ -37,6 +50,9 @@ public class OpenTextQuestion {
 	}
 
 	//SETTERS
+	public void setAnswers(List<OpenTextAnswer> answers) {
+		this.answers = answers;
+	}
 	public void setQuestionId(long questionId) {
 		this.questionId = questionId;
 	}
@@ -63,7 +79,10 @@ public class OpenTextQuestion {
 	public Query getQuery() {
 		return query;
 	}
-
+	
+	public List<OpenTextAnswer> getAnswers() {
+		return answers;
+	}
 	
 
 	//TOSTRING

@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+//Question which has multiple options to choose from as an answer, it can be checkbox(multiple answers) or radio(only 1 answer)
 @Entity
 public class MultipleChoiceQuestion {
 	
