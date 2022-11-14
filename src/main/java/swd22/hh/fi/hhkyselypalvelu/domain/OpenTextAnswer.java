@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+//A single answer to one OpenTextQuestion
 @Entity
 public class OpenTextAnswer {
 
@@ -28,8 +29,7 @@ public class OpenTextAnswer {
 	}
 
 	public OpenTextAnswer() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	//setters
@@ -58,6 +58,7 @@ public class OpenTextAnswer {
 		return question;
 	}
 
+	//Tostring
 	@Override
 	public String toString() {
 		return "OpenTextAnswer [answerId=" + answerId + ", answer=" + answer + ", question=" + question + "]";

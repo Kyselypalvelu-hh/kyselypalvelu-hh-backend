@@ -35,9 +35,9 @@ public class Query {
 	
 	//CONSTRUCTORS
 	public Query() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
+	
 	public Query(String queryTitle, String description) {
 		super();
 		this.title = queryTitle;
@@ -61,9 +61,6 @@ public class Query {
 		this.choiceQuestions = choiceQuestions;
 	}
 
-	
-	
-	
 
 	//GETTERS
 	public Long getId() {
@@ -83,7 +80,6 @@ public class Query {
 	}
 
 	
-	
 	//TOSTRING
 	@Override
 	public String toString() {
@@ -91,6 +87,13 @@ public class Query {
 	}
 
 	
+	//adds one open or choice question to query
+	public void addTextQuestion(OpenTextQuestion question) {
+		this.textQuestions.add(question);
+	}
+	public void addMultipleChoiceQuestion(MultipleChoiceQuestion question) {
+		this.choiceQuestions.add(question);
+	}
 	
 	
 }

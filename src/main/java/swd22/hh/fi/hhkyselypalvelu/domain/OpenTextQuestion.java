@@ -21,7 +21,6 @@ public class OpenTextQuestion {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long questionId;
 	private String question;
-
 	
 	@ManyToOne
 	@JoinColumn(name="queryId")
@@ -33,15 +32,10 @@ public class OpenTextQuestion {
 	private List<OpenTextAnswer> answers;
 	
 	
-	
-	
-
-
 
 	//Constructors
 	public OpenTextQuestion() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public OpenTextQuestion(String title,Query query) {
@@ -92,6 +86,11 @@ public class OpenTextQuestion {
 	public String toString() {
 		return "Question [questionId=" + questionId + ", title=" + question + ", query=" + query
 				+ "]";
+	}
+	
+	//adds one answer to question
+	public void addAnswer(OpenTextAnswer answer) {
+		this.answers.add(answer);
 	}
 	
 	

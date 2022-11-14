@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
@@ -48,10 +49,19 @@ public class RestServiceQueryController {
     }
     //get one open text questions
     @RequestMapping(value="/queries/{id}/opentextquestions/{qid}" , method = RequestMethod.GET)
-    public @ResponseBody OpenTextQuestion getQuestion(@PathVariable("id") Long queryId, @PathVariable("qid") int questionId) {
+    public @ResponseBody OpenTextQuestion getOpenTextQuestion(@PathVariable("id") Long queryId, @PathVariable("qid") int questionId) {
     	List<OpenTextQuestion> questions = repository.findById(queryId).get().getTextQuestions();
     	OpenTextQuestion question = questions.get(questionId-1);
-    	
     	return question;
+    }
+    @RequestMapping(value="/queries/{id}/opentextquestions/{qid}" , method = RequestMethod.POST)
+    public @ResponseBody OpenTextAnswer addAnswerToQuestion(@PathVariable("id") Long queryId, @PathVariable("qid") int questionId,
+    @RequestBody OpenTextAnswer answer){
+    	List<OpenTextQuestion> questions = repository.findById(queryId).get().getTextQuestions();
+    	OpenTextQuestion question = questions.get(questionId-1);
+    	List<OpenTextAnswer> answers = question.getAnswers();
+    	questions.get(questionId).addAnswer(answer);
+		return repository.save(questions);
+    	
     }
 }

@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface QueryRepository extends CrudRepository<Query, Long>{
 	List<Query> findByTitle(String title);
+
+	OpenTextAnswer save(List<OpenTextQuestion> questions);
 }
