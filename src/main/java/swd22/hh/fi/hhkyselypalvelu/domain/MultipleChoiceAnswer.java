@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+//A single answer to a question which contains multiple answer options
 @Entity
 public class MultipleChoiceAnswer {
 	
@@ -32,8 +33,7 @@ public class MultipleChoiceAnswer {
 	
 	//CONSTRUCTORS
 	public MultipleChoiceAnswer() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public MultipleChoiceAnswer(MultipleChoiceQuestion question, List<MultipleChoiceOption> options) {

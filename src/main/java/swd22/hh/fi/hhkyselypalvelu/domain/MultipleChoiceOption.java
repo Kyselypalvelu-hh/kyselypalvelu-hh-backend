@@ -27,18 +27,10 @@ public class MultipleChoiceOption {
 	@JsonIgnoreProperties({"choiceOptions","answers"})
 	private	MultipleChoiceQuestion question;
 	
-	/*
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
-	@JsonIgnoreProperties("option")
-	private List<MultipleChoiceAnswer> answers;
-	
-	*/
-	
 	
 	//CONSTRUCTORS
 	public MultipleChoiceOption() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public MultipleChoiceOption(String option, MultipleChoiceQuestion question) {

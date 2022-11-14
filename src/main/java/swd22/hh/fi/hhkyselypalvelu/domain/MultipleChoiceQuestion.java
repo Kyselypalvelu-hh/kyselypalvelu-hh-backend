@@ -25,7 +25,6 @@ public class MultipleChoiceQuestion {
 	private String question;
 	private boolean isCheckbox;
 
-	
 	@ManyToOne
 	@JoinColumn(name="queryId")
 	@JsonIgnoreProperties("choiceQuestions")
@@ -35,38 +34,16 @@ public class MultipleChoiceQuestion {
 	@JsonIgnoreProperties("question")
 	private List<MultipleChoiceOption> choiceOptions;
 	
-	
-	//ANSWERS
-	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
 	private List<MultipleChoiceAnswer> answers;
 	
-	public List<MultipleChoiceAnswer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<MultipleChoiceAnswer> answers) {
-		this.answers = answers;
-	}
 
 	
-	//-----
-	
-	
-
-	public List<MultipleChoiceOption> getChoiceOptions() {
-		return choiceOptions;
-	}
-
-	public void setChoiceOptions(List<MultipleChoiceOption> choiceOptions) {
-		this.choiceOptions = choiceOptions;
-	}
 
 	//Constructors
 	public MultipleChoiceQuestion() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public MultipleChoiceQuestion(String title) {
@@ -94,14 +71,18 @@ public class MultipleChoiceQuestion {
 		this.question = title;
 	}
 
-
 	public void setQuery(Query query) {
 		this.query = query;
 	}
 	public void setCheckbox(boolean isCheckbox) {
 		this.isCheckbox = isCheckbox;
 	}
-
+	public void setAnswers(List<MultipleChoiceAnswer> answers) {
+		this.answers = answers;
+	}
+	public void setChoiceOptions(List<MultipleChoiceOption> choiceOptions) {
+		this.choiceOptions = choiceOptions;
+	}
 
 	//GETTERS
 	public long getQuestionId() {
@@ -111,7 +92,6 @@ public class MultipleChoiceQuestion {
 	public String getQuestion() {
 		return question;
 	}
-
 	
 	public Query getQuery() {
 		return query;
@@ -120,7 +100,13 @@ public class MultipleChoiceQuestion {
 	public boolean isCheckbox() {
 		return isCheckbox;
 	}
+	public List<MultipleChoiceAnswer> getAnswers() {
+		return answers;
+	}
 
+	public List<MultipleChoiceOption> getChoiceOptions() {
+		return choiceOptions;
+	}
 	
 
 	//TOSTRING
