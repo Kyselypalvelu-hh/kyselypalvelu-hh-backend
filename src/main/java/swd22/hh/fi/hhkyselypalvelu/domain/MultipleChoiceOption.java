@@ -41,9 +41,7 @@ public class MultipleChoiceOption {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MultipleChoiceOption(Long optionId, String option, MultipleChoiceQuestion question) {
-		super();
-		this.optionId = optionId;
+	public MultipleChoiceOption(String option, MultipleChoiceQuestion question) {
 		this.option = option;
 		this.question = question;
 	}

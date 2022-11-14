@@ -44,9 +44,10 @@ public class OpenTextQuestion {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OpenTextQuestion(String title) {
+	public OpenTextQuestion(String title,Query query) {
 		super();
 		this.question = title;
+		this.query = query;
 
 	}
 

@@ -74,6 +74,16 @@ public class MultipleChoiceQuestion {
 		this.question = title;
 
 	}
+	
+
+	public MultipleChoiceQuestion(String title,Boolean isCheckbox,Query query,List<MultipleChoiceOption> options) {
+		super();
+		this.question = title;
+		this.isCheckbox = isCheckbox;
+		this.query = query;
+		this.choiceOptions = options;
+
+	}
 
 	//SETTERS
 	public void setQuestionId(long questionId) {
