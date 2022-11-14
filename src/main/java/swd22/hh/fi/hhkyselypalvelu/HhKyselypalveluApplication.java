@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
@@ -96,7 +95,13 @@ public class HhKyselypalveluApplication {
 			query.setTextQuestions(textQuestions);
 			queryRepo.save(query);
 			
+			//answer
+			OpenTextAnswer answer = new OpenTextAnswer("Tutor ei puhunut suomea",textQuestion2);
+			textAnswerRepo.save(answer);
+			
 		};
+		
+		
 	}
 
 	

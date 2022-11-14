@@ -67,23 +67,20 @@ public class QuestionController {
 		return "redirect:/createmultichoiceanswers/"+multiquestion.getQuestionId(); // redirect to add new questions
 	}
 	
+	//Shows form for creating options for a question
 	@GetMapping("/createmultichoiceanswers/{id}")
 	public String getMultipleChoiceAnswerCreation(@PathVariable("id") Long id,Model model) {
 		MultipleChoiceOption option = new MultipleChoiceOption();
-		MultipleChoiceAnswer multianswers = new MultipleChoiceAnswer();
 		MultipleChoiceQuestion multiquestion = multichoicequestionrepo.findById(id).get();
-		multianswers.setQuestion(multiquestion);
 		option.setQuestion(multiquestion);
-		model.addAttribute("answers", multianswers);
 		model.addAttribute("option", option);
 		return "addmultianswers";
 	}
 	
+	//saves a single options for multichoice question
 	@PostMapping("/saveoptions")
 	public String saveOptionsForMultiChoiceQuestion(@ModelAttribute MultipleChoiceOption option, Model model) {
-		
 		multioptionrepo.save(option);
-		
-		return "addmultianswers";
+		return "redirect:/createmultichoiceanswers/" + option.getQuestion().getQuestionId();
 	}
 }

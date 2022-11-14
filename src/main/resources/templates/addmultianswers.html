@@ -29,8 +29,8 @@
 			<div style="clear: both; display: block; height: 20px;"></div>
 			<h3>Options:</h3>
 			<table>
-				<tr th:each="option : ${answers.options}">
-					<td th:text="${option}"></td>
+				<tr th:each="option : ${option.question.choiceOptions}">
+					<td th:text="${option.option}"></td>
 					
 				</tr>
 			</table>
