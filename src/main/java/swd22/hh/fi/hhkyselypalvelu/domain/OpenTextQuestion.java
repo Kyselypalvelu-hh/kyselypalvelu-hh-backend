@@ -94,5 +94,10 @@ public class OpenTextQuestion {
 				+ "]";
 	}
 	
+	//adds one answer to question
+	public void addAnswer(OpenTextAnswer answer) {
+		this.answers.add(answer);
+	}
+	
 	
 }

@@ -130,6 +130,15 @@ public class MultipleChoiceQuestion {
 				+ "]";
 	}
 
+	//adds one new option to options
+	public void addOption(MultipleChoiceOption option) {
+		this.choiceOptions.add(option);
+	}
+	
+	//adds answer to question
+	public void addAnswer(MultipleChoiceAnswer answer) {
+		this.answers.add(answer);
+	}
 
 
 

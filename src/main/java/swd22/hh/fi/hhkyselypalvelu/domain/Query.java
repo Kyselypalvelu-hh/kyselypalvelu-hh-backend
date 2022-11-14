@@ -90,7 +90,13 @@ public class Query {
 		return "Query [queryId=" + id + ", queryTitle=" + title + ", description=" + description +"]";
 	}
 
-	
+	//adds one open or choice question to query
+	public void addTextQuestion(OpenTextQuestion question) {
+		this.textQuestions.add(question);
+	}
+	public void addMultipleChoiceQuestion(MultipleChoiceQuestion question) {
+		this.choiceQuestions.add(question);
+	}
 	
 	
 }
