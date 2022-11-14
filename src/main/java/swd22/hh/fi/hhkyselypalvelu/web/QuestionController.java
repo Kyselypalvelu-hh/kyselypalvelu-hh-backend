@@ -1,6 +1,8 @@
 package swd22.hh.fi.hhkyselypalvelu.web;
 
-import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
@@ -27,6 +32,11 @@ public class QuestionController {
 	private QueryRepository queryrepo;
 	@Autowired
 	private MultipleChoiceQuestionRepository multichoicequestionrepo;
+	@Autowired
+	private MultipleChoiceAnswerRepository multianswerrepo;
+	@Autowired
+	private MultipleChoiceOptionRepository multioptionrepo;
+	
 	
 	//RECEIVES EMPTY QUESTION 
 	@GetMapping("/createquestions/{id}")
@@ -56,12 +66,24 @@ public class QuestionController {
 		multichoicequestionrepo.save(multiquestion);		
 		return "redirect:/createmultichoiceanswers/"+multiquestion.getQuestionId(); // redirect to add new questions
 	}
-	/**
+	
 	@GetMapping("/createmultichoiceanswers/{id}")
 	public String getMultipleChoiceAnswerCreation(@PathVariable("id") Long id,Model model) {
+		MultipleChoiceOption option = new MultipleChoiceOption();
 		MultipleChoiceAnswer multianswers = new MultipleChoiceAnswer();
 		MultipleChoiceQuestion multiquestion = multichoicequestionrepo.findById(id).get();
+		multianswers.setQuestion(multiquestion);
+		option.setQuestion(multiquestion);
 		model.addAttribute("answers", multianswers);
+		model.addAttribute("option", option);
 		return "addmultianswers";
-	}**/
+	}
+	
+	@PostMapping("/saveoptions")
+	public String saveOptionsForMultiChoiceQuestion(@ModelAttribute MultipleChoiceOption option, Model model) {
+		
+		multioptionrepo.save(option);
+		
+		return "addmultianswers";
+	}
 }

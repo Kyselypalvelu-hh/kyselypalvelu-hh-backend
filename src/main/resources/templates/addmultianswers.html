@@ -11,30 +11,31 @@
 	<div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-3">
-			<form th:object="${question}" th:action="@{/savequestion}" action="#"
+				<h3>Add answer options for your question: </h3>
+				<strong th:text="${option.question.question}"></strong>
+				<br/>
+				<br/>
+			<form th:object="${option}" th:action="@{/saveoptions}" action="#"
 				method="post">
 				
-				<h3>Add answer options for your question: </h3>
-				<strong th:text="*{query.title}"></strong>
-				<br/>
-				<br/>
-				<label for="question"></label> 
-				<input type="text" id="question" th:field="*{title}" size="60" autofocus
-					placeholder="Add single answer question" /> 
-				<input type="hidden" th:field="*{query.id}"> 
+			
+				<label for="option"></label> 
+				<input type="text" id="option" th:field="*{option}" size="60" autofocus
+					placeholder="Add option for your question" /> 
+				<input type="hidden" th:field="*{question.questionId}"> 
 				<input class="btn btn-primary" type="submit" value="Add"></input>
 			</form>
 			
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<h3>Questions:</h3>
+			<h3>Options:</h3>
 			<table>
-				<tr th:each="question : ${questions}">
-					<td th:text="${question.title}"></td>
+				<tr th:each="option : ${answers.options}">
+					<td th:text="${option}"></td>
 					
 				</tr>
 			</table>
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<a href="/" class="btn btn-success">Save query</a>
+			<a href="/" class="btn btn-success">Save options</a>
 		</div>
 	</div>
 </body>
