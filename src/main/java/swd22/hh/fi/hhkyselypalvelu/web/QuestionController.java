@@ -19,7 +19,7 @@ import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestionRepository;
 
 @Controller // Controller for questions made with thymeleaf
 public class QuestionController {
-	
+	//jouni
 	//
 	@Autowired
 	private OpenTextQuestionRepository questionrepo;
