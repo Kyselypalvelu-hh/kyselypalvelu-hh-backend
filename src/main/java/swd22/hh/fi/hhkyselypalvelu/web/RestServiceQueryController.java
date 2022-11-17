@@ -54,6 +54,7 @@ public class RestServiceQueryController {
     	OpenTextQuestion question = questions.get(questionId-1);
     	return question;
     }
+    /*
     @RequestMapping(value="/queries/{id}/opentextquestions/{qid}" , method = RequestMethod.POST)
     public @ResponseBody OpenTextAnswer addAnswerToQuestion(@PathVariable("id") Long queryId, @PathVariable("qid") int questionId,
     @RequestBody OpenTextAnswer answer){
@@ -63,5 +64,5 @@ public class RestServiceQueryController {
     	questions.get(questionId).addAnswer(answer);
 		return repository.save(questions);
     	
-    }
+    }*/
 }

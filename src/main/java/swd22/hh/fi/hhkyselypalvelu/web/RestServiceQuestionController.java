@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestionRepository;
 
@@ -32,9 +34,14 @@ public class RestServiceQuestionController {
     	return repository.findById(qId);
     } 
     
+    @RequestMapping(value="/questions/{id}/answers", method = RequestMethod.GET)
+    public @ResponseBody List<OpenTextAnswer> findQuestionAnswersRest(@PathVariable("id") Long qId) {	
+    	return repository.findById(qId).get().getAnswers();
+    } 
     // RESTful service to save new question
     @RequestMapping(value="/questions", method = RequestMethod.POST)
     public @ResponseBody OpenTextQuestion saveQuestionsRest(@RequestBody OpenTextQuestion question) {	
     	return repository.save(question);
     }
+    
 }
