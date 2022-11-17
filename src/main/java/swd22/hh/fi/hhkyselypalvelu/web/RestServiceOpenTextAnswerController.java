@@ -36,16 +36,18 @@ public class RestServiceOpenTextAnswerController {
     }    
 
 	// RESTful service to get answers by question id
-    @PostMapping("/answers")
-    public String saveAnswers(@RequestBody RestAnswerFormatter format) {
+
+    
+    
+    @RequestMapping(value="/answers", method = RequestMethod.POST)
+    public @ResponseBody RestAnswerFormatter saveAnswer(@RequestBody RestAnswerFormatter format) {	
     	List<OpenTextAnswer> openTextAnswers = format.getTextAnswer();
     	List<MultipleChoiceAnswer> multipleChoiseAnswer = format.getChoiceAnswer();
-    	for(OpenTextAnswer answer: openTextAnswers) {
+    	for(OpenTextAnswer answer: format.getTextAnswer()) {
     		answerRepository.save(answer);
     	}
-    	return null;
     	
-    	
+    	return format;
     }
 
 }
