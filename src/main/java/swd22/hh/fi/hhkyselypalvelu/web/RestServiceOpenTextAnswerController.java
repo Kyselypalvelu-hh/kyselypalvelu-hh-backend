@@ -40,14 +40,15 @@ public class RestServiceOpenTextAnswerController {
     
     
     @RequestMapping(value="/answers", method = RequestMethod.POST)
-    public @ResponseBody RestAnswerFormatter saveAnswer(@RequestBody RestAnswerFormatter format) {	
-    	List<OpenTextAnswer> openTextAnswers = format.getTextAnswer();
-    	List<MultipleChoiceAnswer> multipleChoiseAnswer = format.getChoiceAnswer();
-    	for(OpenTextAnswer answer: format.getTextAnswer()) {
-    		answerRepository.save(answer);
-    	}
-    	
-    	return format;
+    public @ResponseBody RestAnswerFormatter saveAnswer(@RequestBody RestAnswerFormatter format) {
+    	try {
+			for(OpenTextAnswer answer: format.getTextAnswer()) {
+				answerRepository.save(answer);
+			}
+			return format;
+		} catch (Exception e) {
+			return format;
+		}
     }
 
 }
