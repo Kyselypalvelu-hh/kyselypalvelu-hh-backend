@@ -11,15 +11,24 @@
 	<div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-3">
-			<form th:object="${question}" th:action="@{/savequestion}" action="#"
-				method="post">
+			
 				
 				<h3>Add questions for your query: </h3>
-				<strong th:text="*{query.title}"></strong>
+				<strong th:text="${query.title}"></strong>
 				<h6> Description: </h6>
-				<strong th:text="*{query.description}"></strong>
-				<br/>
-				<br/>
+				<strong th:text="${query.description}"></strong>
+				
+				<div style="clear: both; display: block; height: 20px;"></div>	
+			<h4>Please select the type of a question you would like to make: </h4>
+			<!-- th:checked="${option.question.isCheckbox} ? true" -->	
+			<form th:object="${question}" th:action="@{/savequestion}" action="#"
+				method="post">
+				<input type="radio" id="opentext" name="optiontype">
+			<label for="opentext">Opentext</label><br>
+			<input type="radio" id="checkbox" name="optiontype">
+			<label for="checkbox">Checkbox</label><br>
+			<input type="radio" id="single" name="optiontype">
+			<label for="single">Single option</label><br>
 				<label for="question"></label> 
 				<input type="text" id="question" th:field="*{title}" size="60" autofocus
 					placeholder="Add single answer question" /> 

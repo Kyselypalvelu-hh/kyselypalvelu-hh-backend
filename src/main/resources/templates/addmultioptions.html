@@ -11,22 +11,21 @@
 	<div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-3">
-				<h3>Add answer options for your question: </h3>
-				<strong th:text="${option.question.question}"></strong>
-				<br/>
-				<br/>
+			<h3>Add answer options for your question:</h3>
+			<h4 th:text="${option.question.question}"></h4> <br />
 			<form th:object="${option}" th:action="@{/saveoptions}" action="#"
 				method="post">
-				
-			
-				<label for="option"></label> 
-				<input type="text" id="option" th:field="*{option}" size="60" autofocus
-					placeholder="Add option for your question" /> 
-				<input type="hidden" th:field="*{question.questionId}"> 
-				<input class="btn btn-primary" type="submit" value="Add"></input>
+
+
+				<label for="option"></label> <input type="text" id="option"
+					th:field="*{option}" size="60" autofocus
+					placeholder="Add option for your question" /> <input type="hidden"
+					th:field="*{question.questionId}"> <input
+					class="btn btn-primary" type="submit" value="Add"></input>
 			</form>
-			
+
 			<div style="clear: both; display: block; height: 20px;"></div>
+				
 			<h3>Options:</h3>
 			<table>
 				<tr th:each="option : ${option.question.choiceOptions}">
@@ -34,8 +33,9 @@
 					
 				</tr>
 			</table>
+			
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<a href="/" class="btn btn-success">Save options</a>
+			<a href="/createquestions" class="btn btn-success">Save options</a>
 		</div>
 	</div>
 </body>

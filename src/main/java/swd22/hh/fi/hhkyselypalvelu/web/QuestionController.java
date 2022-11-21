@@ -46,6 +46,7 @@ public class QuestionController {
 		Query query = queryrepo.findById(id).get();
 		textquestion.setQuery(query);
 		multichoicequestion.setQuery(query);
+		model.addAttribute("query", query);
 		model.addAttribute("question", textquestion);
 		model.addAttribute("questions", query.getTextQuestions());
 		model.addAttribute("multichoisequestion", multichoicequestion);
@@ -74,7 +75,7 @@ public class QuestionController {
 		MultipleChoiceQuestion multiquestion = multichoicequestionrepo.findById(id).get();
 		option.setQuestion(multiquestion);
 		model.addAttribute("option", option);
-		return "addmultianswers";
+		return "addmultioptions";
 	}
 	
 	//saves a single options for multichoice question
