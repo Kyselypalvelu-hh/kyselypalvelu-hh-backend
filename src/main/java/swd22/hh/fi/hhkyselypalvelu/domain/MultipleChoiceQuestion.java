@@ -16,12 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //Question which has multiple options to choose from as an answer, it can be checkbox(multiple answers) or radio(only 1 answer)
 @Entity
-public class MultipleChoiceQuestion {
+public class MultipleChoiceQuestion implements Question{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="questionId")
-	private long questionId;
+	private Long questionId;
 	private String question;
 	private boolean isCheckbox;
 
@@ -63,7 +63,7 @@ public class MultipleChoiceQuestion {
 	}
 
 	//SETTERS
-	public void setQuestionId(long questionId) {
+	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
 	}
 
@@ -85,7 +85,7 @@ public class MultipleChoiceQuestion {
 	}
 
 	//GETTERS
-	public long getQuestionId() {
+	public Long getQuestionId() {
 		return questionId;
 	}
 
@@ -126,6 +126,18 @@ public class MultipleChoiceQuestion {
 		this.answers.add(answer);
 	}
 
+	//INTERFACE
+	public String getQuestionIf() {
+		return question;
+	}
 
+	public String getQuestionType() {
+		if (isCheckbox) {
+			return "checkbox";
+		}else {
+			return "radio";
+		}
+		
+	}
 
 }
