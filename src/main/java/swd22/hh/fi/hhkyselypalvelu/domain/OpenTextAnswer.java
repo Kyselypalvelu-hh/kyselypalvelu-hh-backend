@@ -7,9 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //A single answer to one OpenTextQuestion
 @Entity
-public class OpenTextAnswer {
+public class OpenTextAnswer{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +20,7 @@ public class OpenTextAnswer {
 	
 	@ManyToOne
 	@JoinColumn(name="questionId")
+	@JsonIgnoreProperties({"query","answers"})
 	private OpenTextQuestion question;
 	
 	
@@ -62,6 +65,12 @@ public class OpenTextAnswer {
 	@Override
 	public String toString() {
 		return "OpenTextAnswer [answerId=" + answerId + ", answer=" + answer + ", question=" + question + "]";
+	}
+	
+	
+	//TESTING INTERFACE
+	public String returnStringTest() {
+		return "";
 	}
 	
 	

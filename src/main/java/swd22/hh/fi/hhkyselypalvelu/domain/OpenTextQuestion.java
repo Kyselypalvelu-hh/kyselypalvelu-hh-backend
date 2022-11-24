@@ -15,11 +15,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //Question which receives open text answer
 @Entity
-public class OpenTextQuestion {
+public class OpenTextQuestion implements Question{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long questionId;
+	private Long questionId;
 	private String question;
 	
 	@ManyToOne
@@ -49,7 +49,7 @@ public class OpenTextQuestion {
 	public void setAnswers(List<OpenTextAnswer> answers) {
 		this.answers = answers;
 	}
-	public void setQuestionId(long questionId) {
+	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
 	}
 
@@ -63,7 +63,7 @@ public class OpenTextQuestion {
 	}
 
 	//GETTERS
-	public long getQuestionId() {
+	public Long getQuestionId() {
 		return questionId;
 	}
 
@@ -91,6 +91,14 @@ public class OpenTextQuestion {
 	//adds one answer to question
 	public void addAnswer(OpenTextAnswer answer) {
 		this.answers.add(answer);
+	}
+	
+	//INTERFACE
+	public String getQuestionIf() {
+		return question;
+	}
+	public String getQuestionType() {
+		return "text";
 	}
 	
 	

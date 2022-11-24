@@ -99,6 +99,60 @@ public class HhKyselypalveluApplication {
 			OpenTextAnswer answer = new OpenTextAnswer("Tutor ei puhunut suomea",textQuestion2);
 			textAnswerRepo.save(answer);
 			
+			
+			Query query2 = new Query("TESTTEST","testing");
+			
+			//Textquestions
+			List<OpenTextQuestion> textQuestionsTest = new ArrayList<>();
+			OpenTextQuestion textQuestion3 = new OpenTextQuestion("Mitä testataan?",query2);
+			OpenTextQuestion textQuestion4 = new OpenTextQuestion("Testin Testi.",query2);
+			textQuestionsTest.add(textQuestion3);
+			textQuestionsTest.add(textQuestion4);
+			query2.setTextQuestions(textQuestionsTest);
+			
+			//MultipleChoices TEST
+			List<MultipleChoiceQuestion> choiceQuestionsTest = new ArrayList<>();
+			
+			MultipleChoiceQuestion questionTest1 = new MultipleChoiceQuestion();
+			questionTest1.setCheckbox(false);
+			questionTest1.setQuestion("Koska testasit");
+			questionTest1.setQuery(query2);
+			List<MultipleChoiceOption> optionsTest1 = new ArrayList<>();
+			optionsTest1.add(new MultipleChoiceOption("TestiKevät",questionTest1));
+			optionsTest1.add(new MultipleChoiceOption("TestiSyksy",questionTest1));
+			questionTest1.setChoiceOptions(optionsTest1);
+			choiceQuestionsTest.add(questionTest1);
+			
+			MultipleChoiceQuestion questionTest2 = new MultipleChoiceQuestion();
+			questionTest2.setCheckbox(false);
+			questionTest2.setQuestion("Testaatko usein");
+			questionTest2.setQuery(query2);
+			List<MultipleChoiceOption> optionsTest2 = new ArrayList<>();
+			optionsTest2.add(new MultipleChoiceOption("Kyllä",questionTest2));
+			optionsTest2.add(new MultipleChoiceOption("Ei",questionTest2));
+			questionTest2.setChoiceOptions(optionsTest2);
+			choiceQuestions.add(questionTest2);
+			
+			
+			//1-5 option questions
+			String[] questionListTest = {"Arvio (1-5) Kuinka hyvin ensimmäisten päivien tutustuminen kampukseen auttoi opiskelujen aloittamisessa.",
+					"Tutoreihin lähestyminen ja niiltä kysyminen oli helppoa arvio(1-5)",
+					"MyNet ja muihin opiskelualustoihin tutustuminen oli kattavaa",
+					"Aloittavat opiskelukaverit vaikuttavat mukavilta"};
+			
+			for(int i = 0; i<questionListTest.length;i++) {
+				MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+				question.setCheckbox(false);
+				question.setQuestion(questionList[i]);
+				question.setQuery(query2);
+				question.setChoiceOptions(oneToFive(question));
+				
+				choiceQuestionsTest.add(question);
+			}
+			
+			query2.setChoiceQuestions(choiceQuestionsTest);
+			query2.setTextQuestions(textQuestionsTest);
+			queryRepo.save(query2);
 		};
 		
 		
