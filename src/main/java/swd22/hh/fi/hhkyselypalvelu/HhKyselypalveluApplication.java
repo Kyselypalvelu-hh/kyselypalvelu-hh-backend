@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
@@ -96,8 +97,20 @@ public class HhKyselypalveluApplication {
 			queryRepo.save(query);
 			
 			//answer
-			OpenTextAnswer answer = new OpenTextAnswer("Tutor ei puhunut suomea",textQuestion2);
-			textAnswerRepo.save(answer);
+			OpenTextAnswer answer1 = new OpenTextAnswer("en tiedä",textQuestion1);
+			OpenTextAnswer answer2 = new OpenTextAnswer("Tutor ei puhunut suomea",textQuestion2);
+			List<MultipleChoiceOption> answer3o = new ArrayList<>();
+			answer3o.add(options1.get(1));
+			MultipleChoiceAnswer answer3 = new MultipleChoiceAnswer(question1,answer3o);
+			
+			List<MultipleChoiceOption> answer4o = new ArrayList<>();
+			answer4o.add(options2.get(0));
+			MultipleChoiceAnswer answer4 = new MultipleChoiceAnswer(question2,answer4o);
+			
+			textAnswerRepo.save(answer1);
+			textAnswerRepo.save(answer2);
+			choiceAnswerRepo.save(answer3);
+			choiceAnswerRepo.save(answer4);
 			
 			
 			Query query2 = new Query("TESTTEST","testing");

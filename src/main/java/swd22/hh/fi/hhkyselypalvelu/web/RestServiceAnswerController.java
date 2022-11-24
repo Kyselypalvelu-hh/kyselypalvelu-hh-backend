@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswerRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
@@ -33,6 +36,9 @@ public class RestServiceAnswerController {
 	@Autowired
 	private QueryRepository queryRepo;
 	
+	@Autowired
+	private MultipleChoiceAnswerRepository choiceAnswerRepo;
+	
 	// RESTful service to get all opentextanswers
     @RequestMapping(value="/textanswers", method = RequestMethod.GET)
     public @ResponseBody List<OpenTextAnswer> getOpenTextAnswersRest() {	
@@ -52,6 +58,11 @@ public class RestServiceAnswerController {
     		List<OpenTextAnswer> answersForOneQuestion = textAnswerRepo.findByQuestion(question);
     		//Add answers to oner question to formatter which is added to list of formatters, empty array list is added for multiplechoicequestions for now
     		answers.add(new RestShowAnswersFormatter(answersForOneQuestion,new ArrayList<>(),question));
+    	}
+    	
+    	for(MultipleChoiceQuestion question: query.getChoiceQuestions()) {
+    		List<MultipleChoiceAnswer> answersForOne = choiceAnswerRepo.findByQuestion(question);
+    		answers.add(new RestShowAnswersFormatter(new ArrayList<>(),answersForOne,question));
     	}
     	
     	return answers;
