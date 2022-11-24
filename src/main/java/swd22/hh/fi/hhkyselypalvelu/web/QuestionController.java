@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
-import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
-import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;

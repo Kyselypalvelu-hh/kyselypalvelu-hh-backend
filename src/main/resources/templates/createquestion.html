@@ -40,12 +40,14 @@
 			<div style="clear: both; display: block; height: 20px;"></div>
 			<h3>Questions:</h3>
 			<table>
+				<tr><th>Open text questions</th></tr>
 				<tr th:each="question : ${questions}">
 					<td th:text="${question.title}"></td>
 					
 				</tr>
 			</table>
 			<table>
+				<tr><th>Multiple choice questions</th></tr>
 				<tr th:each="multiq : ${multichoisequestions}">
 					<td th:text="${multiq.question}"></td>
 					
