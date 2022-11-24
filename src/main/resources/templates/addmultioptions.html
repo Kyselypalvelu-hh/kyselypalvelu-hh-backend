@@ -35,7 +35,7 @@
 			</table>
 			
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<a href="/createquestions" class="btn btn-success">Save options</a>
+			<a th:href="@{/createquestions/{id}(id=${option.question.query.id})}" class="btn btn-success">Save options</a>
 		</div>
 	</div>
 </body>

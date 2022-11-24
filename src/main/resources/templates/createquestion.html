@@ -21,37 +21,33 @@
 				<div style="clear: both; display: block; height: 20px;"></div>	
 			<h4>Please select the type of a question you would like to make: </h4>
 			<!-- th:checked="${option.question.isCheckbox} ? true" -->	
-			<form th:object="${question}" th:action="@{/savequestion}" action="#"
+			<form role="form" id="sendQuestionType" th:action="@{/savequestion}" action="#"
 				method="post">
-				<input type="radio" id="opentext" name="optiontype">
-			<label for="opentext">Opentext</label><br>
-			<input type="radio" id="checkbox" name="optiontype">
-			<label for="checkbox">Checkbox</label><br>
-			<input type="radio" id="single" name="optiontype">
-			<label for="single">Single option</label><br>
-				<label for="question"></label> 
-				<input type="text" id="question" th:field="*{title}" size="60" autofocus
-					placeholder="Add single answer question" /> 
+				<select class="form-control" id="questiontype" name="questiontype">
+    				<option value="opentext">Open text question     (question for a single text answer)</option>
+	    			<option value="checkbox">Check box question     (question for multiple choice possibilities from options)</option>
+	    			<option value="multioption">Multiple option question     (question for one choice possibility from options)</option>		   
+				</select>
+				<br><br>
+				
+				<input type="text" id="question" name="questiontext" size="60" autofocus
+					placeholder="Add question" /> 
 				<input type="hidden" th:field="*{query.id}"> 
 				<input class="btn btn-primary" type="submit" value="Add"></input>
+				
 			</form>
-			<div style="clear: both; display: block; height: 20px;"></div>
-			
-			<form th:object="${multichoisequestion}" th:action="@{/savemultichoicequestion}" action="#"
-				method="post">
-			<label for="multichoicequestion"></label> 
-				<input type="text" id="multichoicequestion" th:field="*{question}" size="60"
-					placeholder="Add multiple answer question"/> 
-				<input type="hidden" th:field="*{query.id}"> 
-				<input class="btn btn-primary" type="submit" value="Add"/>
-			
-			</form>
-			
+		
 			<div style="clear: both; display: block; height: 20px;"></div>
 			<h3>Questions:</h3>
 			<table>
 				<tr th:each="question : ${questions}">
 					<td th:text="${question.title}"></td>
+					
+				</tr>
+			</table>
+			<table>
+				<tr th:each="multiq : ${multichoisequestions}">
+					<td th:text="${multiq.question}"></td>
 					
 				</tr>
 			</table>
