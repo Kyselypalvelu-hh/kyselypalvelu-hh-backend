@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>List of Queries</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	
+	<div style="clear: both; display: block; height: 20px;"></div>
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+		<h1>Queries</h1>
+	<table class="table table-striped">
+		<tr>	
+			<th>Title</th>	
+			<th>Description</th>
+		</tr>
+		<tr th:each="query : ${queries}">
+			
+			<td th:text="${query.title}"></td>
+			<td th:text="${query.description}"></td>
+			<td><a th:href="@{/editquery/{id}(id=${query.id})}" class="btn btn-primary">View/Edit Query</a></td>
+			
+		</tr>
+	</table>
+	<a href="/createquery" class="btn btn-success">Create new query</a>
+	</div></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Query Service</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div style="clear: both; display: block; height: 20px;"></div>
+	<div class="row">
+		<div class="col-md-8 offset-md-3">
+   <form th:object="${query}" th:action="@{/update/{id}(id=${query.id})}" action="#" method="post">
+   <h3>Edit Query</h3>
+   <input type="hidden" id="id" th:field="*{id}"/>
+   <br/>
+   
+   <label for="title">Title</label><br/>
+   <input th:field="*{title}" type="text" id="title" size="60"  placeholder="Title for your query"/><br/>
+   <br/>
+  	<label for="description">Description</label><br/>
+   <input th:field="*{description}" type="text" id="description" size="60" placeholder="Description for your query"/>
+   <br/>
+   <br>
+   <label for="textQuestions">Open text questions</label><br/>
+   <ul th:each="textQuestion : ${query.textQuestions}">
+   	<li th:text="${textQuestion.title}"></li>
+   </ul>
+	<label for="multipleChoiceQuestions">Multiple choice questions</label><br/>
+   <ul th:each="multipleChoiceQuestion : ${query.choiceQuestions}">
+   	<li th:text="${multipleChoiceQuestion.question}"></li>
+   </ul>
+	
+   <input class="btn btn-primary" type="submit" value="save">
+  	<a th:href="@{/createquestions/{id}(id=${query.id})}" class="btn btn-success">Edit questions</a>
+   </form>
+   </div>
+   </div>
+   
+   
+</body>

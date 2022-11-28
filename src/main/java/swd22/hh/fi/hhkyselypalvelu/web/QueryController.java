@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
@@ -32,6 +33,26 @@ public class QueryController {
 		String create = "createquestions/"+query.getId();
 		return "redirect:/"+create;
 	}
+	// LIST ALL QUERIES
+	@GetMapping("/allqueries")
+	public String listQueries(Model model) {
+		 model.addAttribute("queries", queryrepo.findAll());
+		
+		return "allqueries";
+	}
 	
-	
+	// EDIT QUERY
+	@GetMapping("editquery/{id}")
+	public String editQuery(@PathVariable(name = "id") Long id, Model model) {
+		Query query = queryrepo.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("Invalid query Id:" + id));
+		model.addAttribute(query);
+		return "editquery";
+	}
+	// SAVE UPDATED QUERY
+	@PostMapping("update/{id}")
+	public String updateQuery(@PathVariable(name = "id") Long id, Query query) {
+		queryrepo.save(query);
+		return "redirect:/allqueries";
+	}
 }
