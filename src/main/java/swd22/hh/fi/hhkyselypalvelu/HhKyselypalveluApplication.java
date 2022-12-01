@@ -112,6 +112,22 @@ public class HhKyselypalveluApplication {
 			choiceAnswerRepo.save(answer3);
 			choiceAnswerRepo.save(answer4);
 			
+			//answer2
+			OpenTextAnswer answer5 = new OpenTextAnswer("Kova nälkä kokoajan",textQuestion1);
+			OpenTextAnswer answer6 = new OpenTextAnswer("Oli kivaa",textQuestion2);
+			List<MultipleChoiceOption> answer7o = new ArrayList<>();
+			answer7o.add(options1.get(0));
+			MultipleChoiceAnswer answer7 = new MultipleChoiceAnswer(question1,answer7o);
+			
+			List<MultipleChoiceOption> answer8o = new ArrayList<>();
+			answer8o.add(options2.get(0));
+			MultipleChoiceAnswer answer8 = new MultipleChoiceAnswer(question2,answer8o);
+			
+			textAnswerRepo.save(answer5);
+			textAnswerRepo.save(answer6);
+			choiceAnswerRepo.save(answer7);
+			choiceAnswerRepo.save(answer8);
+			
 			
 			Query query2 = new Query("TESTTEST","testing");
 			
