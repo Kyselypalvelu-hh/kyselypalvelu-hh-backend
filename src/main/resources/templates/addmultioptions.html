@@ -29,8 +29,10 @@
 			<h3>Options:</h3>
 			<table>
 				<tr th:each="option : ${option.question.choiceOptions}">
-					<td th:text="${option.option}"></td>
-					
+					<td th:text="${option.option}"></td>					
+					<td><a th:href="@{/deleteoption/{id}(id=${option.optionId})}"
+				class="btn btn-danger">Delete</a>
+				</td>
 				</tr>
 			</table>
 			

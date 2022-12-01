@@ -23,7 +23,9 @@
 			<td th:text="${query.title}"></td>
 			<td th:text="${query.description}"></td>
 			<td><a th:href="@{/editquery/{id}(id=${query.id})}" class="btn btn-primary">View/Edit Query</a></td>
-			
+			<td><a th:href="@{/deletequery/{id}(id=${query.id})}"
+				class="btn btn-danger">Delete</a>
+				</td>
 		</tr>
 	</table>
 	<a href="/createquery" class="btn btn-success">Create new query</a>

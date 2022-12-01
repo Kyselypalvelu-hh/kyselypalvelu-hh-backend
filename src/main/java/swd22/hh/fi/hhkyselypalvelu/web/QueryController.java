@@ -55,4 +55,11 @@ public class QueryController {
 		queryrepo.save(query);
 		return "redirect:/allqueries";
 	}
+	
+	// DELETE QUERY
+	@GetMapping("/deletequery/{id}")
+	public String deleteQuery(@PathVariable(name = "id") Long id) {
+		queryrepo.deleteById(id);
+		return "redirect:/allqueries";
+	}
 }

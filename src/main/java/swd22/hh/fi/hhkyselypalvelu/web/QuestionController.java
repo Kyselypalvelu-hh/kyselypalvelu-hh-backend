@@ -29,8 +29,6 @@ public class QuestionController {
 	@Autowired
 	private MultipleChoiceQuestionRepository multichoicequestionrepo;
 
-	@Autowired
-	private MultipleChoiceOptionRepository multioptionrepo;
 
 	// RECEIVES EMPTY QUESTION
 	@GetMapping("/createquestions/{id}")
@@ -84,28 +82,22 @@ public class QuestionController {
 		}
 		return "error";
 	}
-	/*
-	@PostMapping("/savemultichoicequestion")
-	public String saveMultiChoiceQuestion(@ModelAttribute MultipleChoiceQuestion multiquestion, Model model) {
 
-		multichoicequestionrepo.save(multiquestion);
-		return "redirect:/createmultichoiceanswers/" + multiquestion.getQuestionId(); // redirect to add new questions
-	}*/
-
-	// Shows form for creating options for a question
-	@GetMapping("/createmultichoioptions/{id}")
-	public String getMultipleChoiceAnswerCreation(@PathVariable("id") Long id, Model model) {
-		MultipleChoiceOption option = new MultipleChoiceOption();
-		MultipleChoiceQuestion multiquestion = multichoicequestionrepo.findById(id).get();
-		option.setQuestion(multiquestion);
-		model.addAttribute("option", option);
-		return "addmultioptions";
+	
+	// Deletes multioption question
+	@GetMapping("/deletemultichoicequestion/{id}")
+	public String deleteMultiChoiceQuestion(@PathVariable(name = "id") Long questionId) {
+		MultipleChoiceQuestion multiQ = multichoicequestionrepo.findById(questionId)
+		.orElseThrow(() -> new IllegalArgumentException("Invalid question Id:" + questionId));
+		multichoicequestionrepo.deleteById(questionId);
+		return "redirect:/createquestions/" + multiQ.getQuery().getId();
 	}
-
-	// saves a single options for multichoice question
-	@PostMapping("/saveoptions")
-	public String saveOptionsForMultiChoiceQuestion(@ModelAttribute MultipleChoiceOption option, Model model) {
-		multioptionrepo.save(option);
-		return "redirect:/createmultichoioptions/" + option.getQuestion().getQuestionId();
-	}
+	// Deletes text question
+		@GetMapping("/deletetextquestion/{id}")
+		public String deleteTextQuestion(@PathVariable(name = "id") Long questionId) {
+			OpenTextQuestion textQ = questionrepo.findById(questionId)
+			.orElseThrow(() -> new IllegalArgumentException("Invalid question Id:" + questionId));
+			questionrepo.deleteById(questionId);
+			return "redirect:/createquestions/" + textQ.getQuery().getId();
+		}
 }
