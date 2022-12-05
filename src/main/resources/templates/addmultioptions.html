@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 	<div style="clear: both; display: block; height: 20px;"></div>
@@ -31,7 +32,7 @@
 				<tr th:each="option : ${option.question.choiceOptions}">
 					<td th:text="${option.option}"></td>					
 					<td><a th:href="@{/deleteoption/{id}(id=${option.optionId})}"
-				class="btn btn-danger">Delete</a>
+				class="material-icons" style="font-size:24px;color:red;" >clear</a>
 				</td>
 				</tr>
 			</table>
