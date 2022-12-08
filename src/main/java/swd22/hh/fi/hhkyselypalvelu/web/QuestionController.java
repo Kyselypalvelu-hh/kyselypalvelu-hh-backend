@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
-import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
+
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextQuestion;
@@ -69,7 +69,7 @@ public class QuestionController {
 			model.addAttribute("option", option);
 			return "addmultioptions"; // open new page to add options for multioption question
 			
-			//save multioption question
+			//save radiobutton question
 		}if (questiontype.equals("multioption") == true){
 			MultipleChoiceQuestion multiQuestion = new MultipleChoiceQuestion();
 			multiQuestion.setQuestion(questiontext);

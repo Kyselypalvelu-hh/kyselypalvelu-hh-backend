@@ -7,6 +7,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 <div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-3">
@@ -16,17 +17,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
    <br/>
    
    <label for="title">Title</label><br/>
-   <input th:field="*{title}" type="text" id="title" size="60"  placeholder="Title for your query"/><br/>
+   <input th:field="*{title}" type="text" id="title" size="80"  placeholder="Title for your query"/><br/>
    <br/>
   	<label for="description">Description</label><br/>
-   <input th:field="*{description}" type="text" id="description" size="60" placeholder="Description for your query"/>
+   <input th:field="*{description}" type="text" id="description" size="80" placeholder="Description for your query"/>
    <br/>
    <br>
-   <label for="textQuestions">Open text questions</label><br/>
+   <label for="textQuestions">Questions</label><br/>
    <ul th:each="textQuestion : ${query.textQuestions}">
    	<li th:text="${textQuestion.title}"></li>
    </ul>
-	<label for="multipleChoiceQuestions">Multiple choice questions</label><br/>
    <ul th:each="multipleChoiceQuestion : ${query.choiceQuestions}">
    	<li th:text="${multipleChoiceQuestion.question}"></li>
    </ul>

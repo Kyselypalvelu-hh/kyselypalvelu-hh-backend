@@ -14,6 +14,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 	<div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-3">
@@ -21,20 +22,20 @@
 
 			<h3>Add questions for your query:</h3>
 			<h5><strong th:text="${query.title}"></strong></h5>
-			<h6>Description:</h6>
 			<p th:text="${query.description}"></p>
 
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<h4>Please select the type of a question you would like to make:
-			</h4>
-			<!-- th:checked="${option.question.isCheckbox} ? true" -->
+			<h4>Please select the type of a question you would like to make:</h4>
+			<!-- SELECT QUESTION TYPE -->
 			<form role="form" id="sendQuestionType" th:action="@{/savequestion}"
-				action="#" method="post">
-				<select class="form-control" id="questiontype" name="questiontype" autofocus>
+				action="#" method="post"> 
+				<select class="form-control" id="questiontype" name="questiontype"  autofocus >
 					<option value="opentext">Text </option>
 					<option value="checkbox">Check box </option>
 					<option value="multioption">Radio button</option>
-				</select> <br> <input type="text" id="question" name="questiontext"
+				</select> <br> 
+				<h5>Add question here:</h5>
+				<input type="text" id="question" name="questiontext"
 					size="60" placeholder="Add question" /> <input
 					type="hidden" th:field="*{query.id}"> <input
 					class="btn btn-primary" type="submit" value="Add"></input>
@@ -47,41 +48,55 @@
 				<tr>
 					<th>Question</th>
 					<th>Type &nbsp;</th>
-					<th><i class="material-icons" style="font-size: 24px; color: black;">delete</i>
+					<th>Options &nbsp;</th>
+					<th>Delete</th>
+						
 				</tr>
+				<!-- OPEN TEXT QUESTIONS  -->
 				<tr  th:each="question : ${questions}">
-					<!-- OPEN TEXT QUESTIONS  -->
 					<td th:text="${question.title}"></td>
 					<td><span class="material-symbols-outlined" tabindex="0" data-toggle="tooltip" title="Text"> chat </span></td>
+					<td>&nbsp;</td>
 					<td><a
 						th:href="@{/deletetextquestion/{id}(id=${question.questionId})}"
-						class="material-icons" style="font-size: 24px; color: red;">clear</a>
+						class="material-icons" style="font-size: 24px; color: red;" tabindex="0" data-toggle="tooltip" title="Delete">clear</a>
 					</td>
+					
 				</tr>
 			<!-- CHECKBOX QUESTIONS  -->
 				<tr th:each="multiq : ${multichoisequestions}" th:if="${multiq.isCheckbox}">
 					<td ><span
-						th:text="${multiq.question}"></span></td>
-					<td><span class="material-symbols-outlined" tabindex="0" data-toggle="tooltip" title="Check box">
-							select_check_box </span></td>
+						th:text="${multiq.question}"></span>
+					</td>
+					<td><span class="material-symbols-outlined" style="font-size: 20px" tabindex="0" data-toggle="tooltip" title="Check box">
+							select_check_box </span>
+					</td>
+					<td><a
+						th:href="@{/createmultichoioptions/{id}(id=${multiq.questionId})}"
+						class="material-symbols-outlined" style="font-size: 24px; color: black;" tabindex="0" data-toggle="tooltip" title="Edit options">search_check</a>
+					</td>
 					<td><a
 						th:href="@{/deletemultichoicequestion/{id}(id=${multiq.questionId})}"
-						class="material-icons" style="font-size: 24px; color: red;">clear</a>
+						class="material-icons" style="font-size: 24px; color: red;" tabindex="0" data-toggle="tooltip" title="Delete">clear</a>
 					</td>
 				</tr>
-		
+				<!-- RADIO BUTTON QUESTIONS  -->
 				<tr th:each="multiq : ${multichoisequestions}" th:unless="${multiq.isCheckbox}">
 					<td><span th:text="${multiq.question}"></span></td>
-					<td><span class="material-symbols-outlined" tabindex="0" data-toggle="tooltip" title="Radio button">
+					<td><span class="material-symbols-outlined" style="font-size: 20px" tabindex="0" data-toggle="tooltip" title="Radio button">
 							radio_button_checked </span></td>
 					<td><a
+						th:href="@{/createmultichoioptions/{id}(id=${multiq.questionId})}"
+						class="material-symbols-outlined" style="font-size: 24px; color: black;" tabindex="0" data-toggle="tooltip" title="Edit options">search_check</a>
+					</td>
+					<td><a
 						th:href="@{/deletemultichoicequestion/{id}(id=${multiq.questionId})}"
-						class="material-icons" style="font-size: 24px; color: red;">clear</a>
+						class="material-icons" style="font-size: 24px; color: red;" tabindex="0" data-toggle="tooltip" title="Delete">clear</a>
 					</td>
 				</tr>
 			</table>
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<a href="/" class="btn btn-success">Save query</a>
+			<a href="/allqueries" class="btn btn-success">Save query</a>
 		</div>
 	</div>
 </body>

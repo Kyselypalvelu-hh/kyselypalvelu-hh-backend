@@ -8,7 +8,7 @@
 	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	
+	<div th:insert="navbar :: navbar">  </div>
 	<div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-2">
@@ -17,6 +17,8 @@
 		<tr>	
 			<th>Title</th>	
 			<th>Description</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
 		</tr>
 		<tr th:each="query : ${queries}">
 			

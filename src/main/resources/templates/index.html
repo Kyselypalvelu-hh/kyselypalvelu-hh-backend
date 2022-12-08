@@ -7,11 +7,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
+	<div th:insert="navbar :: navbar">  </div>
 	<div style="clear: both; display: block; height: 20px;"></div>
 	<div class="row">
 		<div class="col-md-8 offset-md-3">
-    <h1>Query Service site in the works</h1>
-    <h2>Stay tuned...</h2>
+    <h1>Welcome to Query Service</h1>
+    <h2>Create or view queries below</h2>
    
     <a href="/createquery" class="btn btn-primary">Create query</a>
     <a href="/allqueries" class="btn btn-primary">All queries</a>

@@ -12,12 +12,11 @@ import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestionRepository;
-import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
+
 
 @Controller // Controller for multiple choice OPTIONS made with thymeleaf
 public class OptionController {
-	@Autowired
-	private QueryRepository queryrepo;
+	
 	@Autowired
 	private MultipleChoiceQuestionRepository multichoicequestionrepo;
 
