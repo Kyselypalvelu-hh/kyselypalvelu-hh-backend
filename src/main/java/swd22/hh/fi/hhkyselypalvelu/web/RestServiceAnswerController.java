@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceAnswerRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOption;
+import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceOptionRepository;
 import swd22.hh.fi.hhkyselypalvelu.domain.MultipleChoiceQuestion;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswer;
 import swd22.hh.fi.hhkyselypalvelu.domain.OpenTextAnswerRepository;
@@ -38,6 +40,9 @@ public class RestServiceAnswerController {
 	
 	@Autowired
 	private MultipleChoiceAnswerRepository choiceAnswerRepo;
+	
+	@Autowired
+	private MultipleChoiceOptionRepository optionRepo;
 	
 	// RESTful service to get all opentextanswers
     @RequestMapping(value="/textanswers", method = RequestMethod.GET)
@@ -72,8 +77,13 @@ public class RestServiceAnswerController {
     @RequestMapping(value="/answers", method = RequestMethod.POST)
     public @ResponseBody RestAnswerFormatter saveAnswer(@RequestBody RestAnswerFormatter format) {
     	try {
+    		//Save text answrs
 			for(OpenTextAnswer answer: format.getTextAnswer()) {
 				textAnswerRepo.save(answer);
+			}
+			//save choice answers
+			for(MultipleChoiceAnswer option: format.getChoiceAnswer()) {
+				choiceAnswerRepo.save(option);
 			}
 			return format;
 		} catch (Exception e) {

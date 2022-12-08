@@ -42,6 +42,7 @@ public class MultipleChoiceAnswer {
 		this.options = options;
 	}
 
+
 	//SETTERS
 	public void setAnswerId(Long answerId) {
 		this.answerId = answerId;

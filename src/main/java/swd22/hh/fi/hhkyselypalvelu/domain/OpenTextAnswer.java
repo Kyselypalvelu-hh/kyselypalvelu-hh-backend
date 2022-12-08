@@ -16,12 +16,12 @@ public class OpenTextAnswer{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long answerId;
-	private String answer;
+	private String answer; //from json
 	
 	@ManyToOne
 	@JoinColumn(name="questionId")
 	@JsonIgnoreProperties({"query","answers"})
-	private OpenTextQuestion question;
+	private OpenTextQuestion question; //from json
 	
 	
 	//Constructors
