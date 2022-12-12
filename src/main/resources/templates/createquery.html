@@ -14,9 +14,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
    <form th:object="${query}" th:action="@{savequery}" action="#" method="post">
    <h3>Create new query:</h3>
    <br/>
-   <label>
+   <label>Title:<br>
    <input th:field="*{title}" type="text" id="title" size="60" autofocus placeholder="Title for your query"/><br/>
    <br/>
+   Description: 
+   <br>
    <input th:field="*{description}" type="text" id="description" size="60" autofocus placeholder="Description for your query"/>
    <br/>
    <br/>

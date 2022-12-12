@@ -41,8 +41,8 @@ public class QuestionController {
 		model.addAttribute("query", query);
 		model.addAttribute("question", textquestion);
 		model.addAttribute("questions", query.getTextQuestions());
-		model.addAttribute("multichoisequestion", multichoicequestion);
-		model.addAttribute("multichoisequestions", query.getChoiceQuestions());
+		model.addAttribute("multichoicequestion", multichoicequestion);
+		model.addAttribute("multichoicequestions", query.getChoiceQuestions());
 		return "createquestion";
 	}
 

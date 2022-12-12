@@ -43,7 +43,7 @@
 			</form>
 
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<table th:if="${!questions.isEmpty() or !multichoisequestions.isEmpty()}">
+			<table th:if="${!questions.isEmpty() or !multichoicequestions.isEmpty()}">
 				
 				<tr>
 					<th>Question</th>
@@ -64,7 +64,7 @@
 					
 				</tr>
 			<!-- CHECKBOX QUESTIONS  -->
-				<tr th:each="multiq : ${multichoisequestions}" th:if="${multiq.isCheckbox}">
+				<tr th:each="multiq : ${multichoicequestions}" th:if="${multiq.isCheckbox}">
 					<td ><span
 						th:text="${multiq.question}"></span>
 					</td>
@@ -81,7 +81,7 @@
 					</td>
 				</tr>
 				<!-- RADIO BUTTON QUESTIONS  -->
-				<tr th:each="multiq : ${multichoisequestions}" th:unless="${multiq.isCheckbox}">
+				<tr th:each="multiq : ${multichoicequestions}" th:unless="${multiq.isCheckbox}">
 					<td><span th:text="${multiq.question}"></span></td>
 					<td><span class="material-symbols-outlined" style="font-size: 20px" tabindex="0" data-toggle="tooltip" title="Radio button">
 							radio_button_checked </span></td>
