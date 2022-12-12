@@ -1,6 +1,9 @@
 package swd22.hh.fi.hhkyselypalvelu.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import swd22.hh.fi.hhkyselypalvelu.domain.Query;
 import swd22.hh.fi.hhkyselypalvelu.domain.QueryRepository;
+import swd22.hh.fi.hhkyselypalvelu.domain.QueryService;
 
 @Controller // Controller for queries made with thymeleaf
 public class QueryController {
 	
 	@Autowired
 	private QueryRepository queryrepo;
-	
+	@Autowired
+	private QueryService queryservice;
 	//CREATES NEW QUERY AND ASKS FOR THE TITLE FOR THE ENTIRE FORM(QUERY)
 	@GetMapping("/createquery")
 	public String getTest(Model model) {
@@ -35,8 +40,11 @@ public class QueryController {
 	}
 	// LIST ALL QUERIES
 	@GetMapping("/allqueries")
-	public String listQueries(Model model) {
-		 model.addAttribute("queries", queryrepo.findAll());
+	public String listQueries(Model model, @Param("keyword") String keyword) {
+		 List<Query> listQueries = queryservice.listAll(keyword);
+		 model.addAttribute("queries", listQueries);
+		 model.addAttribute("keyword", keyword);
+		 
 		
 		return "allqueries";
 	}
